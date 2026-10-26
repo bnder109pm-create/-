@@ -1,1022 +1,1337 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <meta content="#12382f" name="theme-color"/>
-  <meta content="index,follow" name="robots"/>
-  <meta content="بوابة ثانوية الكسائي التعليمية: الواجبات والاختبارات والشروحات وتنظيم المذاكرة ومتابعة الدرجات والروابط التعليمية." name="description"/>
-  <meta content="ثانوية الكسائي | البوابة التعليمية" property="og:title"/>
-  <meta content="تعلّم، أنجز، تميّز — كل أدواتك الدراسية في مكان واحد." property="og:description"/>
-  <meta content="light dark" name="color-scheme"/>
-  <title>ثانوية الكسائي | البوابة التعليمية</title>
-  
-  <style>
-    :root {
-      --bg: #f4f7f5;
-      --panel: #fff;
-      --ink: #1b2c27;
-      --muted: #6d7c75;
-      --green: #174b3c;
-      --green2: #236b50;
-      --mint: #e3f1e8;
-      --gold: #d5b56f;
-      --line: #e0e8e2;
-      --red: #b74c43;
-      --shadow: 0 8px 28px #153f3010;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>بوابة الكسائي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=El+Messiri:wght@500;600;700&display=swap">
+<style>
+  /* Layout: sticky header + right-side rail (RTL) with a single working column; rail becomes a scrolling strip on phones. */
+  :root {
+    --bg: #eef3ef;
+    --surface: #ffffff;
+    --surface-2: #e4ece6;
+    --ink: #13221c;
+    --muted: #57695f;
+    --line: #d3ddd6;
+    --primary: #1b5a42;
+    --primary-hover: #154a36;
+    --on-primary: #ffffff;
+    --primary-soft: #d8eadf;
+    --gold: #a8741a;
+    --gold-soft: #f4e7cd;
+    --ok: #2a7a4b;
+    --ok-soft: #dff1e5;
+    --bad: #b2433a;
+    --bad-soft: #f8e1de;
+    --skip: #8a6a1f;
+    --skip-soft: #f3ead6;
+    --header: #10372a;
+    --on-header: #eaf4ee;
+    --shadow: 0 1px 2px rgba(19, 34, 28, .06), 0 6px 20px rgba(19, 34, 28, .06);
+    --font-display: "El Messiri", "Noto Naskh Arabic", Tahoma, serif;
+    --font-body: "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+    --r: 14px;
+    --r-sm: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1511; --surface: #141f1a; --surface-2: #1b2923; --ink: #e5eee8; --muted: #9bb0a4; --line: #283a31;
+      --primary: #48a67c; --primary-hover: #5bb98e; --on-primary: #04130c; --primary-soft: #1d382c;
+      --gold: #ddb062; --gold-soft: #362b17; --ok: #62c58f; --ok-soft: #173424; --bad: #ef8b81; --bad-soft: #3b1f1c;
+      --skip: #d9b45f; --skip-soft: #33290f; --header: #0a2219; --on-header: #e3efe8;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+      color-scheme: dark;
     }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1511; --surface: #141f1a; --surface-2: #1b2923; --ink: #e5eee8; --muted: #9bb0a4; --line: #283a31;
+    --primary: #48a67c; --primary-hover: #5bb98e; --on-primary: #04130c; --primary-soft: #1d382c;
+    --gold: #ddb062; --gold-soft: #362b17; --ok: #62c58f; --ok-soft: #173424; --bad: #ef8b81; --bad-soft: #3b1f1c;
+    --skip: #d9b45f; --skip-soft: #33290f; --header: #0a2219; --on-header: #e3efe8;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
 
-    * { box-sizing: border-box; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.75; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--header); }
+  .app { min-height: 100%; text-align: right; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; line-height: 1.4; }
+  p { margin: 0; }
+  .icon { width: 20px; height: 20px; flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .num { font-variant-numeric: tabular-nums; }
+  .m { direction: ltr; unicode-bidi: isolate; display: inline-block; }
 
-    body {
-      margin: 0;
-      background: radial-gradient(ellipse at 8% 0%, #dceee3 0, transparent 30%), var(--bg);
-      color: var(--ink);
-      font-family: Tahoma, Arial, sans-serif;
-      letter-spacing: .05px;
-    }
+  /* ---------- Header ---------- */
+  .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--header); color: var(--on-header); }
+  .topbar-in { height: 62px; max-width: 1360px; margin: 0 auto; display: flex; align-items: center; gap: 12px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .crest { width: 38px; height: 38px; color: var(--gold); flex-shrink: 0; }
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .brand b { font-family: var(--font-display); font-size: 18px; font-weight: 700; display: block; line-height: 1.2; }
+  .brand small { font-size: 12px; opacity: .78; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .spacer { flex: 1; }
+  .hijri { font-size: 13px; opacity: .85; white-space: nowrap; }
+  .iconbtn { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(255,255,255,.18); background: transparent; color: var(--on-header); }
+  .iconbtn:hover { background: rgba(255,255,255,.08); }
 
-    ::selection { background: #b8d9c3; color: #12382f; }
+  /* ---------- Shell ---------- */
+  .layout { max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 28px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 48px; }
+  .rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 86px); align-self: start; display: flex; flex-direction: column; gap: 2px; }
+  .rail-label { font-size: 11px; font-weight: 600; letter-spacing: .4px; color: var(--muted); padding: 14px 12px 6px; }
+  .nav { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border: 0; border-radius: var(--r-sm); background: transparent; color: var(--muted); font-size: 14px; font-weight: 500; text-align: right; }
+  .nav:hover { background: var(--surface-2); color: var(--ink); }
+  .nav[aria-current="page"] { background: var(--primary-soft); color: var(--primary); font-weight: 700; }
+  .nav .badge { margin-inline-start: auto; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 99px; background: var(--gold-soft); color: var(--gold); }
+  main { min-width: 0; }
+  .page[hidden] { display: none !important; }
+  .page { display: flex; flex-direction: column; gap: 20px; animation: in .18s ease; }
+  @keyframes in { from { opacity: .6; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .page { animation: none; } .timer.warn { animation: none !important; } }
 
-    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-      outline: 3px solid #d5b56f;
-      outline-offset: 3px;
-    }
+  .pagehead { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .pagehead h2 { font-size: 26px; }
+  .pagehead p { color: var(--muted); font-size: 14px; margin-top: 4px; max-width: 62ch; }
+  .eyebrow { font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: .3px; }
 
-    button, input, select, textarea { font: inherit; }
-    button, a { cursor: pointer; }
-    a { text-decoration: none; color: inherit; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; min-width: 0; }
+  .panel.raised { box-shadow: var(--shadow); }
+  .panel h3 { font-size: 17px; }
+  .panel > p, .muted { color: var(--muted); font-size: 14px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+  .grid.three { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .between { justify-content: space-between; }
 
-    .app { min-height: 100vh; background: var(--bg); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border-radius: var(--r-sm); border: 1px solid transparent; background: var(--primary); color: var(--on-primary); font-weight: 600; font-size: 14px; line-height: 1.4; }
+  .btn:hover { background: var(--primary-hover); }
+  .btn.ghost { background: var(--surface); color: var(--primary); border-color: var(--line); }
+  .btn.ghost:hover { background: var(--surface-2); }
+  .btn.danger { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+  .btn.sm { padding: 7px 12px; font-size: 13px; }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 99px; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+  .chip.gold { background: var(--gold-soft); color: var(--gold); }
+  .chip.ok { background: var(--ok-soft); color: var(--ok); }
+  .chip.bad { background: var(--bad-soft); color: var(--bad); }
+  .chip.skip { background: var(--skip-soft); color: var(--skip); }
+  .field { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); color: var(--ink); font-size: 14px; }
+  .field:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px var(--primary-soft); }
+  label.lbl { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--muted); }
+  .notice { background: var(--gold-soft); color: var(--ink); border-radius: var(--r-sm); padding: 12px 14px; font-size: 13px; line-height: 1.9; }
+  .empty { color: var(--muted); font-size: 13px; padding: 6px 0; }
+  .progress { height: 8px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
+  .progress span { display: block; height: 100%; background: var(--primary); border-radius: 99px; }
 
-    .topbar {
-      height: auto;
-      min-height: 76px;
-      background: linear-gradient(120deg, #102d27, #205b45);
-      color: #fff;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 5px 20px #09291d20;
-    }
+  /* ---------- Dashboard ---------- */
+  .welcome { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 0; padding: 0; overflow: hidden; }
+  .welcome .intro { padding: 26px; display: flex; flex-direction: column; gap: 12px; }
+  .welcome h2 { font-size: clamp(24px, 3vw, 32px); }
+  .welcome .intro p { color: var(--muted); max-width: 52ch; }
+  .welcome .figures { background: var(--surface-2); padding: 22px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 16px; align-content: center; border-inline-start: 1px solid var(--line); }
+  .fig b { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--primary); display: block; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .fig span { font-size: 12px; color: var(--muted); }
+  .examcard { display: flex; flex-direction: column; gap: 12px; }
+  .examcard .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+  .examcard ul { margin: 0; padding-inline-start: 18px; color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 4px; }
+  .examcard .row { margin-top: auto; }
+  .mark { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 20px; background: var(--primary-soft); color: var(--primary); flex-shrink: 0; }
+  .mark.g { background: var(--gold-soft); color: var(--gold); }
+  .hist { display: flex; flex-direction: column; }
+  .hist-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .hist-item:last-child { border-bottom: 0; }
+  .hist-item .mark { width: 36px; height: 36px; font-size: 16px; border-radius: 10px; }
+  .hist-item .t { flex: 1; min-width: 0; }
+  .hist-item .t b { display: block; font-size: 14px; }
+  .hist-item .t small { color: var(--muted); font-size: 12px; }
+  .hist-item .score { font-family: var(--font-display); font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums; }
 
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .crest {
-      height: 46px;
-      width: 46px;
-      border: 1px solid #ffffff40;
-      background: #ffffff16;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      font-size: 25px;
-    }
+  /* ---------- Exam ---------- */
+  .exambar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px); z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 16px; }
+  .exambar b { font-family: var(--font-display); font-size: 16px; display: block; }
+  .exambar small { color: var(--muted); font-size: 12px; }
+  .timer { display: inline-flex; align-items: center; gap: 8px; font-size: 22px; font-weight: 700; color: var(--primary); background: var(--primary-soft); padding: 4px 14px; border-radius: var(--r-sm); font-variant-numeric: tabular-nums; direction: ltr; }
+  .timer.warn { color: var(--bad); background: var(--bad-soft); animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: .65; } }
+  .examgrid { display: grid; grid-template-columns: minmax(0, 1fr) 236px; gap: 16px; align-items: start; }
+  .qmeta { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+  .question { font-size: 17px; font-weight: 600; line-height: 2.05; margin: 14px 0 16px; }
+  .question sup, .answer sup { font-size: .65em; }
+  .passage { font-weight: 400; font-size: 15px; line-height: 2.05; background: var(--surface-2); border-radius: var(--r-sm); padding: 14px 16px; margin-bottom: 12px; border-inline-start: 3px solid var(--gold); }
+  .cmpbox { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .cmpbox > div { border: 1px dashed var(--line); border-radius: var(--r-sm); padding: 12px; text-align: center; font-size: 19px; background: var(--surface); }
+  .cmpbox small { display: block; font-size: 11px; color: var(--muted); font-weight: 500; }
+  .cond { font-size: 13px; color: var(--muted); font-weight: 400; }
+  .answers { display: grid; gap: 10px; }
+  .answer { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px; text-align: right; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); font-size: 15px; transition: border-color .12s, background .12s; }
+  .answer:hover { border-color: var(--primary); }
+  .answer .letter { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--surface-2); color: var(--muted); font-weight: 700; flex-shrink: 0; }
+  .answer[aria-pressed="true"] { background: var(--primary-soft); border-color: var(--primary); font-weight: 600; }
+  .answer[aria-pressed="true"] .letter { background: var(--primary); color: var(--on-primary); }
+  .qnav { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 12px 0; }
+  .qnav button { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 7px 0; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .qnav button.answered { background: var(--primary-soft); color: var(--primary); border-color: transparent; font-weight: 700; }
+  .qnav button.current { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .legend { display: flex; gap: 14px; font-size: 12px; color: var(--muted); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; border: 1px solid var(--line); margin-inline-end: 5px; vertical-align: middle; }
+  .legend i.a { background: var(--primary-soft); border-color: var(--primary-soft); }
 
-    .brand h1 { font-size: 18px; margin: 0 0 5px; }
-    .brand p { font-size: 11px; color: #d4e6dc; margin: 0; }
-    .topright { display: flex; align-items: center; gap: 12px; font-size: 12px; color: #e0eee6; }
+  .scorehead { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 24px; align-items: center; }
+  .ring { width: 132px; height: 132px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--primary) calc(var(--p) * 1%), var(--surface-2) 0); }
+  .ring > div { width: 104px; height: 104px; border-radius: 50%; background: var(--surface); display: grid; place-items: center; text-align: center; }
+  .ring b { font-family: var(--font-display); font-size: 28px; color: var(--primary); display: block; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .ring small { font-size: 12px; color: var(--muted); }
+  .secrow { display: grid; grid-template-columns: 90px minmax(0, 1fr) 48px; gap: 10px; align-items: center; font-size: 14px; }
+  .review { border: 1px solid var(--line); border-radius: var(--r-sm); padding: 14px 16px; background: var(--surface); }
+  .review .question { font-size: 15px; margin: 8px 0; }
+  .review .ans { font-size: 14px; line-height: 2; }
+  .review .yes { color: var(--ok); font-weight: 700; }
+  .review .no { color: var(--bad); font-weight: 700; }
+  .review .exp { font-size: 13px; color: var(--muted); background: var(--surface-2); border-radius: 8px; padding: 9px 12px; margin-top: 8px; }
+  .review .ai-exp { font-size: 14px; background: var(--primary-soft); border-radius: 8px; padding: 10px 14px; margin-top: 8px; }
 
-    .layout {
-      display: grid;
-      grid-template-columns: 245px minmax(0, 1fr);
-      max-width: 1500px;
-      margin: auto;
-      min-height: calc(100vh - 76px);
-    }
+  /* ---------- Lessons (Qudrat) ---------- */
+  .tabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--surface-2); border-radius: 12px; flex-wrap: wrap; }
+  .tab { border: 0; background: transparent; padding: 8px 16px; border-radius: 9px; font-weight: 600; font-size: 14px; color: var(--muted); }
+  .tab[aria-selected="true"] { background: var(--surface); color: var(--primary); box-shadow: var(--shadow); }
+  .lesson { display: flex; flex-direction: column; gap: 10px; }
+  .lesson .rule { background: var(--primary-soft); color: var(--primary); font-weight: 600; font-size: 14px; border-radius: var(--r-sm); padding: 9px 12px; }
+  .lesson ul { margin: 0; padding-inline-start: 18px; font-size: 14px; display: flex; flex-direction: column; gap: 3px; }
+  details.ex { border: 1px solid var(--line); border-radius: var(--r-sm); padding: 9px 12px; font-size: 14px; }
+  details.ex summary { cursor: pointer; font-weight: 600; color: var(--primary); }
+  details.ex .sol { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); color: var(--muted); }
+  .lesson .row { margin-top: auto; }
 
-    .sidebar {
-      padding: 20px 14px;
-      border-left: 1px solid var(--line);
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
+  /* ---------- AI ---------- */
+  .ai-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 16px; align-items: start; }
+  .chat { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+  .chat-log { display: flex; flex-direction: column; gap: 14px; padding: 18px; min-height: 360px; max-height: 62vh; overflow-y: auto; }
+  .msg { max-width: 88%; padding: 11px 15px; border-radius: 14px; font-size: 15px; line-height: 1.9; min-width: 0; overflow-wrap: anywhere; }
+  .msg.user { align-self: flex-start; background: var(--primary); color: var(--on-primary); border-start-start-radius: 4px; white-space: pre-wrap; }
+  .msg.bot { align-self: flex-end; background: var(--surface-2); border-start-end-radius: 4px; }
+  .msg.bot p + p, .msg.bot ul, .msg.bot ol, .msg.bot h4 { margin-top: 6px; }
+  .msg.bot ul, .msg.bot ol { margin-bottom: 0; padding-inline-start: 20px; }
+  .msg.bot h4 { font-size: 15px; }
+  .msg.err { background: var(--bad-soft); color: var(--bad); }
+  .thinking { color: var(--muted); font-size: 14px; }
+  .composer { border-top: 1px solid var(--line); padding: 12px; display: flex; gap: 8px; align-items: flex-end; background: var(--surface); }
+  .composer textarea { resize: none; min-height: 46px; max-height: 160px; }
+  .starter { display: flex; flex-direction: column; gap: 8px; }
+  .starter button { text-align: right; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); font-size: 14px; }
+  .starter button:hover { border-color: var(--primary); color: var(--primary); }
+  .ai-off { display: flex; flex-direction: column; gap: 6px; }
 
-    .navlabel {
-      font-size: 10px;
-      color: #91a098;
-      font-weight: bold;
-      padding: 14px 12px 5px;
-    }
+  /* ---------- Misc ---------- */
+  .resource { display: flex; align-items: center; gap: 12px; padding: 14px 16px; }
+  .resource:hover { border-color: var(--primary); }
+  .resource .t { flex: 1; min-width: 0; }
+  .resource b { display: block; font-size: 15px; }
+  .resource small { color: var(--muted); font-size: 13px; }
+  .bigclock { font-family: var(--font-display); font-size: 52px; font-weight: 700; color: var(--primary); text-align: center; font-variant-numeric: tabular-nums; direction: ltr; line-height: 1.3; }
+  .tablewrap { overflow-x: auto; }
+  table.sched { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+  .sched th, .sched td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: center; }
+  .sched th { color: var(--muted); font-weight: 600; font-size: 13px; }
+  .sched td:first-child { font-weight: 700; color: var(--primary); }
+  .sched td[contenteditable]:focus { background: var(--primary-soft); outline: none; }
+  .out { margin-top: 12px; padding: 12px 14px; border-radius: var(--r-sm); background: var(--surface-2); font-size: 15px; font-weight: 600; min-height: 48px; }
 
-    .navbtn {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      text-align: right;
-      border: 0;
-      background: transparent;
-      color: #5e7067;
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 13px;
-      width: 100%;
-      transition: .15s;
-    }
+  .modal { position: fixed; inset: 0; z-index: 50; background: rgba(5, 15, 10, .45); display: grid; place-items: center; padding: 16px; }
+  .modal-card { background: var(--surface); border-radius: var(--r); padding: 22px; width: min(420px, 100%); box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 16px; }
+  .modal-card p { font-size: 15px; font-weight: 500; }
+  .toast { position: fixed; z-index: 60; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 99px; font-size: 14px; font-weight: 500; max-width: calc(100% - 32px); }
+  .foot { color: var(--muted); font-size: 12px; text-align: center; padding-top: 12px; }
 
-    .navbtn:hover { background: #f2f7f3; transform: translateX(-2px); }
-    .navbtn.active { background: var(--mint); color: var(--green); font-weight: bold; }
-    .navicon { width: 25px; text-align: center; font-size: 18px; }
+  @media (max-width: 980px) {
+    .examgrid, .ai-wrap { grid-template-columns: minmax(0, 1fr); }
+    .welcome { grid-template-columns: minmax(0, 1fr); }
+    .welcome .figures { border-inline-start: 0; border-top: 1px solid var(--line); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .hijri { display: none; }
+    .layout { display: block; padding-top: 0; }
+    .rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 62px); z-index: 15; flex-direction: row; overflow-x: auto; gap: 4px; padding: 8px 0; margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))) 16px; padding-inline: max(16px, env(safe-area-inset-right, 0px)); background: var(--bg); border-bottom: 1px solid var(--line); scrollbar-width: none; }
+    .rail-label { display: none; }
+    .nav { width: auto; flex: 0 0 auto; padding: 8px 12px; font-size: 13px; white-space: nowrap; }
+    .nav .badge { display: none; }
+    .exambar { top: calc(env(safe-area-inset-top, 0px) + 122px); }
+    .welcome .figures { grid-template-columns: 1fr 1fr; }
+    .scorehead { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+    .scorehead .row { justify-content: center; }
+    .pagehead h2 { font-size: 22px; }
+    .question { font-size: 16px; }
+    .chat-log { max-height: 55vh; min-height: 300px; }
+    .msg { max-width: 94%; }
+  }
+</style>
 
-    .sidefoot {
-      margin-top: auto;
-      background: #f4f8f5;
-      border: 1px solid var(--line);
-      padding: 14px;
-      border-radius: 14px;
-      font-size: 11px;
-      line-height: 1.8;
-      color: var(--muted);
-    }
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-exam" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="m9 9 1.5 1.5L13.5 7.5M9 15h6"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17 17 3l4 4L7 21z"/><path d="m7 13 2 2m1-5 2 2m1-5 2 2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="m19 15 .7 1.8L21.5 17.5l-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9v6l5-3z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4m8-4v4"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-4 16-4-6z"/><path d="m12 14 8-10"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+</svg>
 
-    main { padding: 28px; min-width: 0; }
-    .page { display: none; animation: fade .2s ease; }
-    .page.active { display: block; }
-
-    @keyframes fade {
-      from { opacity: .5; transform: translateY(4px); }
-      to { opacity: 1; transform: none; }
-    }
-
-    .pagehead {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 15px;
-      margin-bottom: 22px;
-    }
-
-    .pagehead h2 { margin: 0 0 7px; font-size: 25px; }
-    .pagehead p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
-
-    .tag {
-      border-radius: 99px;
-      padding: 7px 11px;
-      background: var(--mint);
-      color: var(--green);
-      font-size: 11px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .hero {
-      background: radial-gradient(circle at 8% 10%, #ffffffcc, transparent 35%), linear-gradient(120deg, #dcefe3, #fbfdfb);
-      border: 1px solid #d8e8dc;
-      border-radius: 23px;
-      padding: 28px;
-      display: grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap: 20px;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .eyebrow { color: #36765a; font-size: 11px; font-weight: bold; }
-    .hero h2 { font-size: clamp(25px, 3vw, 37px); line-height: 1.45; margin: 12px 0; }
-    .hero p { color: #5e7167; font-size: 13px; line-height: 2; margin: 0 0 17px; max-width: 650px; }
-
-    .heroart {
-      background: #153d31;
-      color: white;
-      border-radius: 19px;
-      padding: 22px;
-      min-height: 190px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .heroart:after {
-      content: '✦';
-      position: absolute;
-      left: 10px;
-      bottom: -55px;
-      font-size: 160px;
-      color: #ffffff0d;
-    }
-
-    .heroart small { color: #c9e5d5; }
-    .heroart strong { font-size: 24px; line-height: 1.8; z-index: 1; }
-
-    .btn {
-      border: 0;
-      border-radius: 11px;
-      background: var(--green);
-      color: #fff;
-      padding: 11px 15px;
-      font-size: 12px;
-      font-weight: bold;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-    }
-
-    .btn:hover { background: var(--green2); }
-    .btn.light { background: #fff; color: var(--green); border: 1px solid #cddfd2; }
-    .btn.danger { background: #fff1ef; color: var(--red); border: 1px solid #f1d0cb; }
-    .btn.small { padding: 8px 10px; }
-
-    .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 23px; }
-
-    .stat, .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      min-width: 0;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-
-    .card:hover, .stat:hover { transform: translateY(-2px); box-shadow: 0 12px 30px #153f3018; }
-    .stat { display: flex; align-items: center; gap: 12px; }
-
-    .staticon, .iconbox {
-      height: 42px;
-      width: 42px;
-      border-radius: 13px;
-      background: var(--mint);
-      display: grid;
-      place-items: center;
-      font-size: 21px;
-      flex-shrink: 0;
-    }
-
-    .stat b { font-size: 23px; display: block; color: var(--green); margin-bottom: 4px; }
-    .stat span { font-size: 11px; color: var(--muted); }
-
-    .sectionhead { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin: 24px 0 13px; }
-    .sectionhead h3 { margin: 0 0 5px; font-size: 17px; }
-    .sectionhead p { margin: 0; color: var(--muted); font-size: 11px; }
-
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
-    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-    .card h3 { font-size: 15px; margin: 0 0 8px; }
-    .card p { font-size: 12px; color: var(--muted); line-height: 1.9; margin: 0 0 13px; }
-
-    .cardhead { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
-    .cardhead .iconbox { height: 40px; width: 40px; }
-    .cardhead h3 { margin: 0; }
-
-    .field {
-      width: 100%;
-      border: 1px solid #d9e3dc;
-      border-radius: 10px;
-      padding: 11px;
-      background: #fbfdfb;
-      color: var(--ink);
-      outline-color: #72a58a;
-      margin: 0 0 9px;
-      font-size: 12px;
-    }
-
-    .field:focus { border-color: #77a58b; }
-    .fieldlabel { font-size: 11px; font-weight: bold; display: block; margin: 8px 0 6px; color: #4b6056; }
-    .muted { color: var(--muted); font-size: 11px; line-height: 1.8; }
-
-    .list { display: grid; gap: 9px; margin-top: 13px; }
-    .listitem {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fcfdfc;
-      min-width: 0;
-    }
-
-    .listitem .itemtext { min-width: 0; flex: 1; }
-    .listitem b { font-size: 12px; display: block; margin-bottom: 5px; overflow-wrap: anywhere; }
-    .listitem small { font-size: 10px; color: var(--muted); }
-    .listitem input[type=checkbox] { accent-color: var(--green); width: 17px; height: 17px; }
-    .done b { text-decoration: line-through; color: #8c9992; }
-
-    .pill { font-size: 10px; background: #f0f5f1; color: #4f6a5c; padding: 5px 8px; border-radius: 99px; }
-
-    .resource {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 13px;
-      padding: 14px;
-      transition: .15s;
-    }
-
-    .resource:hover { border-color: #a4c9b1; transform: translateY(-1px); }
-    .resource .emoji { font-size: 23px; }
-    .resource span:nth-child(2) { flex: 1; min-width: 0; }
-    .resource b { font-size: 12px; display: block; margin-bottom: 5px; }
-    .resource small { font-size: 10px; color: var(--muted); line-height: 1.7; }
-    .resource .arrow { color: var(--green); }
-    .resourcegrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-
-    .question { font-size: 14px; font-weight: bold; line-height: 1.9; margin: 14px 0; }
-    .answers { display: grid; gap: 8px; }
-    .answer { padding: 12px; text-align: right; background: #fbfdfb; border: 1px solid var(--line); border-radius: 11px; font-size: 12px; }
-    .answer:hover { border-color: #79aa8c; }
-    .answer.correct { background: #e3f5e7; border-color: #73b285; }
-    .answer.wrong { background: #fff0ed; border-color: #d58b80; }
-
-    .output {
-      white-space: pre-wrap;
-      line-height: 2;
-      font-size: 12px;
-      background: #f5faf6;
-      border: 1px solid #dceae0;
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 12px;
-      min-height: 55px;
-    }
-
-    .notice {
-      border: 1px solid #e7dfc5;
-      background: #fffaf0;
-      color: #7a6840;
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 11px;
-      line-height: 1.8;
-      margin: 12px 0;
-    }
-
-    .schedule { width: 100%; border-collapse: collapse; font-size: 11px; }
-    .schedule th, .schedule td { padding: 12px 8px; border-bottom: 1px solid var(--line); text-align: center; }
-    .schedule th { color: var(--muted); background: #f7faf8; }
-    .schedule td:first-child { font-weight: bold; color: var(--green); }
-
-    .progress { height: 8px; background: #eaf0eb; border-radius: 99px; overflow: hidden; margin: 10px 0; }
-    .progress span { display: block; height: 100%; background: #3b805e; width: 0; transition: .3s; }
-
-    .empty { color: var(--muted); font-size: 11px; padding: 12px 0; }
-    .footer { text-align: center; color: #87958d; font-size: 10px; padding: 30px 0 5px; }
-
-    @media(max-width:1000px) {
-      .layout { grid-template-columns: 205px minmax(0, 1fr); }
-      main { padding: 20px; }
-      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero { grid-template-columns: 1fr; }
-      .heroart { min-height: 150px; }
-    }
-
-    @media(max-width:680px) {
-      .topbar { padding: 12px 14px; }
-      .topright #dateText { display: none; }
-      .layout { display: block; }
-      .sidebar {
-        position: sticky;
-        top: 72px;
-        z-index: 9;
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        border-left: 0;
-        border-bottom: 1px solid var(--line);
-        padding: 8px;
-        gap: 5px;
-      }
-      .navlabel, .sidefoot { display: none; }
-      .navbtn { width: auto; flex: 0 0 auto; padding: 10px 12px; white-space: nowrap; font-size: 11px; }
-      .navicon { font-size: 16px; width: auto; }
-      main { padding: 17px 13px; }
-      .pagehead h2 { font-size: 22px; }
-      .hero { padding: 20px; }
-      .grid, .grid.two, .stats, .resourcegrid { grid-template-columns: 1fr; }
-      .stat { padding: 13px; }
-      .sectionhead { margin-top: 20px; }
-      .brand h1 { font-size: 15px; }
-      .brand p { font-size: 10px; }
-    }
-
-    body[data-theme="dark"] {
-      --bg: #101b17;
-      --panel: #172720;
-      --ink: #e8f0eb;
-      --muted: #a4b4aa;
-      --mint: #244638;
-      --line: #30463a;
-      --shadow: 0 8px 28px #0003;
-    }
-
-    body[data-theme="dark"] .sidebar,
-    body[data-theme="dark"] .resource,
-    body[data-theme="dark"] .listitem,
-    body[data-theme="dark"] .answer,
-    body[data-theme="dark"] .field {
-      background: #172720;
-      color: var(--ink);
-      border-color: var(--line);
-    }
-
-    body[data-theme="dark"] .hero { background: linear-gradient(120deg, #1b382b, #172720); border-color: var(--line); }
-    body[data-theme="dark"] .hero p, body[data-theme="dark"] .hero .eyebrow { color: #b8d8c5; }
-    body[data-theme="dark"] .sidefoot, body[data-theme="dark"] .notice, body[data-theme="dark"] .output { background: #1c3026; color: #d5e5da; border-color: var(--line); }
-    body[data-theme="dark"] .navbtn { color: #c2d1c8; }
-    body[data-theme="dark"] .navbtn.active { background: #244638; color: #e6f5eb; }
-    body[data-theme="dark"] .navbtn:hover { background: #20372b; }
-    body[data-theme="dark"] .schedule th { background: #20372b; }
-    body[data-theme="dark"] .field::placeholder { color: #9caea3; }
-  </style>
+<style>html,body{margin:0}[hidden]{display:none!important}</style>
 </head>
 <body>
-  <div class="app">
-    <!-- الشريط العلوي -->
-    <header class="topbar">
+<div class="app" dir="rtl" lang="ar">
+  <header class="topbar">
+    <div class="topbar-in">
       <div class="brand">
-        <div class="crest">🎓</div>
-        <div>
-          <h1>ثانوية الكسائي</h1>
-          <p>البوابة التعليمية الذكية • تعلّم، أنجز، تميّز</p>
-        </div>
+        <div><b>ثانوية الكسائي</b><small>البوابة التعليمية</small></div>
       </div>
-      <div class="topright">
-        <span id="dateText"></span>
-        <span class="tag">بوابة الطالب</span>
-      </div>
-    </header>
-
-    <div class="layout">
-      <!-- القائمة الجانبية -->
-      <aside class="sidebar">
-        <div class="navlabel">القائمة الرئيسية</div>
-        <button class="navbtn active" onclick="go('dashboard')"><span class="navicon">⌂</span><span class="navtext">الرئيسية</span></button>
-        <button class="navbtn" onclick="go('homework')"><span class="navicon">📝</span><span class="navtext">الواجبات والمهام</span></button>
-        <button class="navbtn" onclick="go('subjects')"><span class="navicon">📚</span><span class="navtext">المواد الدراسية</span></button>
-        <button class="navbtn" onclick="go('quizzes')"><span class="navicon">✅</span><span class="navtext">الاختبارات</span></button>
-        <button class="navbtn" onclick="go('ai')"><span class="navicon">🤖</span><span class="navtext">مساعد الدراسة</span></button>
-        
-        <div class="navlabel">أدوات الطالب</div>
-        <button class="navbtn" onclick="go('lessons')"><span class="navicon">🎥</span><span class="navtext">روابط الشروحات</span></button>
-        <button class="navbtn" onclick="go('planner')"><span class="navicon">🗓️</span><span class="navtext">جدول المذاكرة</span></button>
-        <button class="navbtn" onclick="go('tools')"><span class="navicon">🧮</span><span class="navtext">أدوات دراسية</span></button>
-        <button class="navbtn" onclick="go('resources')"><span class="navicon">🔗</span><span class="navtext">منصات تعليمية</span></button>
-        <button class="navbtn" onclick="go('grades')"><span class="navicon">📊</span><span class="navtext">متابعة الدرجات</span></button>
-        
-        <div class="sidefoot">
-          🌟 <b>رسالتنا</b><br/>
-          بيئة تعليمية تساعد طلاب ثانوية الكسائي على التعلّم والتنظيم وتحقيق أهدافهم.
-        </div>
-      </aside>
-
-      <!-- المحتوى الرئيسي -->
-      <main>
-        <!-- شريط البحث السريع والوضع الداكن -->
-        <div class="card" style="margin-bottom:18px;padding:12px 15px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <span>🔎</span>
-          <input class="field" id="globalSearch" onkeydown="if(event.key==='Enter')globalSearchGo()" placeholder="بحث سريع في أقسام الموقع..." style="flex:1;min-width:180px;margin:0"/>
-          <button class="btn light" onclick="globalSearchGo()">بحث</button>
-          <button class="btn light" onclick="toggleTheme()" title="تغيير المظهر">🌓 المظهر</button>
-        </div>
-
-        <!-- الصفحة الرئيسية -->
-        <section class="page active" id="page-dashboard">
-          <div class="hero">
-            <div>
-              <span class="eyebrow">أهلاً بك في مساحتك التعليمية</span>
-              <h2>مستقبلك يبدأ بخطوة،<br/>وخطوتك تبدأ من هنا.</h2>
-              <p>كل أدواتك الدراسية في أقسام مستقلة وواضحة: تابع واجباتك، تدرب على الاختبارات، نظّم وقتك، واكتشف شروحات تساعدك على الفهم.</p>
-              <div class="row">
-                <button class="btn" onclick="go('homework')">افتح واجباتي ←</button>
-                <button class="btn light" onclick="go('lessons')">استعرض الشروحات</button>
-              </div>
-            </div>
-            <div class="heroart">
-              <small>ثانوية الكسائي • بوابتك للتميّز</small>
-              <strong>معرفة اليوم،<br/>إنجاز الغد.</strong>
-              <span class="tag" style="width:max-content">نسخة الطالب</span>
-            </div>
-          </div>
-
-          <div class="stats">
-            <div class="stat"><div class="staticon">📝</div><div><b id="statHW">0</b><span>واجبات غير مكتملة</span></div></div>
-            <div class="stat"><div class="staticon">✅</div><div><b id="statDone">0</b><span>واجبات منجزة</span></div></div>
-            <div class="stat"><div class="staticon">🎯</div><div><b id="statTasks">0%</b><span>نسبة إنجاز الواجبات</span></div></div>
-          </div>
-
-          <div class="sectionhead">
-            <div><h3>الوصول السريع</h3><p>اختر القسم الذي تحتاجه دون ازدحام.</p></div>
-          </div>
-          <div class="grid">
-            <article class="card">
-              <div class="cardhead"><div class="iconbox">📝</div><h3>الواجبات والمهام</h3></div>
-              <p>سجّل واجباتك ومواعيد التسليم، وتابع ما أنجزته.</p>
-              <button class="btn light" onclick="go('homework')">فتح الواجبات ←</button>
-            </article>
-            <article class="card">
-              <div class="cardhead"><div class="iconbox">🧠</div><h3>الاختبارات التدريبية</h3></div>
-              <p>اختبر معلوماتك في أكثر من مادة، واعرف نتيجتك فورًا.</p>
-              <button class="btn light" onclick="go('quizzes')">ابدأ اختبارًا ←</button>
-            </article>
-            <article class="card">
-              <div class="cardhead"><div class="iconbox">🎥</div><h3>مكتبة الشروحات</h3></div>
-              <p>روابط بحث مخصصة للدروس والمواد الدراسية والقدرات.</p>
-              <button class="btn light" onclick="go('lessons')">عرض الشروحات ←</button>
-            </article>
-          </div>
-
-          <div class="sectionhead">
-            <div><h3>آخر واجباتك</h3><p>نظرة سريعة على قائمة المهام.</p></div>
-            <button class="btn light small" onclick="go('homework')">عرض الكل</button>
-          </div>
-          <div class="card">
-            <div class="list" id="dashboardHW">
-              <div class="empty">لم تضف واجبات بعد. ابدأ بإضافة أول واجب.</div>
-            </div>
-          </div>
-
-          <div class="footer">© بوابة ثانوية الكسائي التعليمية • واجهة طلابية متكاملة</div>
-        </section>
-
-        <!-- صفحة الواجبات -->
-        <section class="page" id="page-homework">
-          <div class="pagehead">
-            <div><h2>📝 الواجبات والمهام</h2><p>أضف الواجبات، وحدد مواعيدها، وعلّم عليها عند الانتهاء.</p></div>
-            <span class="tag">تنظيم الدراسة</span>
-          </div>
-          <div class="grid two">
-            <article class="card">
-              <h3>إضافة واجب جديد</h3>
-              <p>اكتب اسم الواجب والمادة وموعد التسليم.</p>
-              <label class="fieldlabel" for="hwTitle">اسم الواجب</label>
-              <input class="field" id="hwTitle" placeholder="مثال: حل أسئلة الفصل الثالث"/>
-              <label class="fieldlabel" for="hwSubject">المادة</label>
-              <select class="field" id="hwSubject">
-                <option>الرياضيات</option>
-                <option>الفيزياء</option>
-                <option>الكيمياء</option>
-                <option>الأحياء</option>
-                <option>اللغة العربية</option>
-                <option>اللغة الإنجليزية</option>
-                <option>الدراسات الإسلامية</option>
-                <option>الحاسب</option>
-                <option>أخرى</option>
-              </select>
-              <label class="fieldlabel" for="hwDate">موعد التسليم</label>
-              <input class="field" id="hwDate" type="date"/>
-              <button class="btn" onclick="addHomework()">＋ إضافة الواجب</button>
-              <div class="muted" id="hwFeedback" style="margin-top:8px"></div>
-            </article>
-            <article class="card">
-              <h3>ملخص المهام</h3>
-              <p>تابع تقدّمك في واجباتك المسجلة على هذا الجهاز.</p>
-              <div class="stats" style="grid-template-columns:repeat(2,1fr);margin:12px 0">
-                <div class="stat"><div><b id="hwTotal">0</b><span>كل الواجبات</span></div></div>
-                <div class="stat"><div><b id="hwPending">0</b><span>قيد الإنجاز</span></div></div>
-              </div>
-              <div class="progress"><span id="hwProgress"></span></div>
-              <div class="muted" id="hwProgressText">ابدأ بإضافة واجباتك.</div>
-              <div class="notice">تُحفظ البيانات في المتصفح على هذا الجهاز فقط.</div>
-            </article>
-          </div>
-          <div class="sectionhead">
-            <div><h3>قائمة واجباتي</h3><p>يمكنك تحديد الواجب المنجز أو حذفه.</p></div>
-            <select class="field" id="hwFilter" onchange="renderHW()" style="width:auto;margin:0">
-              <option value="all">كل الواجبات</option>
-              <option value="pending">غير المكتملة</option>
-              <option value="done">المكتملة</option>
-            </select>
-          </div>
-          <div class="card">
-            <div class="list" id="homeworkList"></div>
-          </div>
-        </section>
-
-        <!-- صفحة المواد الدراسية -->
-        <section class="page" id="page-subjects">
-          <div class="pagehead">
-            <div><h2>📚 المواد الدراسية</h2><p>تسهيل الوصول لمحتويات المواد المختلفة.</p></div>
-            <span class="tag">مكتبة المواد</span>
-          </div>
-          <div class="grid" id="subjectsGrid">
-            <article class="card"><h3>الرياضيات</h3><p>الجبر، الهندسة، والتفاضل.</p><button class="btn light" onclick="searchLessonQuery('الرياضيات ثانوية')">بحث الشروحات ↗</button></article>
-            <article class="card"><h3>الفيزياء</h3><p>مبادئ القوة والحركة والكهرباء.</p><button class="btn light" onclick="searchLessonQuery('الفيزياء ثانوية')">بحث الشروحات ↗</button></article>
-            <article class="card"><h3>الكيمياء</h3><p>التفاعلات والمواد والروابط الكيميائية.</p><button class="btn light" onclick="searchLessonQuery('الكيمياء ثانوية')">بحث الشروحات ↗</button></article>
-            <article class="card"><h3>الأحياء</h3><p>دراسة الكائنات الحية والخلية والوراثة.</p><button class="btn light" onclick="searchLessonQuery('الأحياء ثانوية')">بحث الشروحات ↗</button></article>
-            <article class="card"><h3>اللغة العربية</h3><p>النحو والبالغة والآداب.</p><button class="btn light" onclick="searchLessonQuery('اللغة العربية ثانوية')">بحث الشروحات ↗</button></article>
-            <article class="card"><h3>اللغة الإنجليزية</h3><p>القواعد والمفردات والمهارات.</p><button class="btn light" onclick="searchLessonQuery('إنجليزي ثانوي')">بحث الشروحات ↗</button></article>
-          </div>
-        </section>
-
-        <!-- صفحة الاختبارات -->
-        <section class="page" id="page-quizzes">
-          <div class="pagehead">
-            <div><h2>✅ الاختبارات التدريبية</h2><p>تدرب على أسئلة قصيرة، وتعرّف على الإجابات الصحيحة بعد كل سؤال.</p></div>
-            <span class="tag">تدريب ذاتي</span>
-          </div>
-          <div class="grid two">
-            <article class="card">
-              <h3>اختر مجال الاختبار</h3>
-              <p>حدد مادة ثم ابدأ اختبارًا تدريبيًا من الأسئلة المتوفرة.</p>
-              <label class="fieldlabel" for="quizSubject">المادة</label>
-              <select class="field" id="quizSubject">
-                <option value="science">علوم عامة</option>
-                <option value="math">رياضيات</option>
-                <option value="english">لغة إنجليزية</option>
-              </select>
-              <button class="btn" onclick="startQuiz()">ابدأ الاختبار ←</button>
-            </article>
-            <article class="card">
-              <div class="cardhead"><div class="iconbox">🏆</div><h3>نتيجتك</h3></div>
-              <div class="output" id="quizSummary">اختر مادة وابدأ الاختبار لعرض النتيجة هنا.</div>
-            </article>
-          </div>
-          <div class="sectionhead">
-            <div><h3>منطقة الاختبار</h3><p id="quizProgress">سيظهر السؤال هنا بعد البدء.</p></div>
-          </div>
-          <div class="card">
-            <div id="quizArea"><div class="empty">ابدأ الاختبار من البطاقة أعلاه.</div></div>
-          </div>
-        </section>
-
-        <!-- صفحة مساعد الدراسة -->
-        <section class="page" id="page-ai">
-          <div class="pagehead">
-            <div><h2>🤖 مساعد الدراسة</h2><p>نظّم أفكارك، حضّر أسئلة للمراجعة، وأنشئ خطة مذاكرة لموضوعك.</p></div>
-            <span class="tag">مساعد تجريبي</span>
-          </div>
-          <div class="grid two">
-            <article class="card">
-              <h3>ماذا تريد أن تفعل؟</h3>
-              <label class="fieldlabel" for="aiMode">نوع المساعدة</label>
-              <select class="field" id="aiMode">
-                <option value="explain">طريقة مبسطة لفهم الدرس</option>
-                <option value="summary">قالب تلخيص</option>
-                <option value="questions">أسئلة مراجعة ذاتية</option>
-              </select>
-              <label class="fieldlabel" for="aiTopic">عنوان الدرس أو ملاحظاتك</label>
-              <textarea class="field" id="aiTopic" placeholder="مثال: قوانين نيوتن للحركة..." rows="4"></textarea>
-              <div class="row">
-                <button class="btn" onclick="studyHelp()">إنشاء المساعدة</button>
-                <button class="btn light" onclick="clearAI()">مسح</button>
-              </div>
-            </article>
-            <article class="card">
-              <h3>المساعدة الدراسية</h3>
-              <div class="output" id="aiOutput">ستظهر هنا خطة أو قالب مراجعة بناءً على الموضوع الذي تكتبه.</div>
-            </article>
-          </div>
-        </section>
-
-        <!-- صفحة الشروحات -->
-        <section class="page" id="page-lessons">
-          <div class="pagehead">
-            <div><h2>🎥 روابط الشروحات</h2><p>اختر المادة لفتح نتائج شروحات ودروس مناسبة.</p></div>
-            <span class="tag">مكتبة الفيديو</span>
-          </div>
-          <div class="card" style="margin-bottom:15px">
-            <label class="fieldlabel" for="lessonSearch">ابحث عن شرح محدد</label>
-            <div class="row">
-              <input class="field" id="lessonSearch" onkeydown="if(event.key==='Enter')searchLesson()" placeholder="مثال: قوانين الحركة..." style="flex:1;margin:0"/>
-              <button class="btn" onclick="searchLesson()">بحث في يوتيوب ↗️</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- صفحة جدول المذاكرة -->
-        <section class="page" id="page-planner">
-          <div class="pagehead">
-            <div><h2>🗓️ جدول المذاكرة</h2><p>قسّم وقتك على المواد وحدد هدفًا واضحًا لكل جلسة.</p></div>
-            <span class="tag">خطة شخصية</span>
-          </div>
-          <div class="grid two">
-            <article class="card">
-              <h3>جلسة تركيز (بومودورو)</h3>
-              <div id="timerDisplay" style="font-size:38px;font-weight:bold;color:var(--green);margin:22px 0;text-align:center">25:00</div>
-              <div class="row" style="justify-content:center">
-                <button class="btn" id="timerStart" onclick="timerStart()">ابدأ</button>
-                <button class="btn light" onclick="timerPause()">إيقاف مؤقت</button>
-                <button class="btn light" onclick="timerReset()">إعادة</button>
-              </div>
-            </article>
-            <article class="card">
-              <h3>نصيحة للمذاكرة الفعالة</h3>
-              <p>المذاكرة على فترات قصيرة بتركيز تام (25 دقيقة) يعقبها 5 دقائق استراحة تُحسّن استيعاب الذاكرة وتمنع الإجهاد.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- صفحة الجدول المدرسي -->
-        <section class="page" id="page-timetable">
-          <div class="pagehead">
-            <div><h2>🕘 جدولي المدرسي</h2><p>قالب أسبوعي قابل للتعديل والحفظ على جهازك.</p></div>
-            <span class="tag">جدول الحصص</span>
-          </div>
-          <div class="card">
-            <div style="overflow-x:auto">
-              <table class="schedule">
-                <thead>
-                  <tr><th>اليوم</th><th>الحصة الأولى</th><th>الحصة الثانية</th><th>الحصة الثالثة</th><th>الحصة الرابعة</th><th>الحصة الخامسة</th></tr>
-                </thead>
-                <tbody id="timetableBody">
-                  <tr><td>الأحد</td><td contenteditable="true">رياضيات</td><td contenteditable="true">فيزياء</td><td contenteditable="true">كيمياء</td><td contenteditable="true">إنجليزي</td><td contenteditable="true">أحياء</td></tr>
-                  <tr><td>الإثنين</td><td contenteditable="true">لغة عربية</td><td contenteditable="true">رياضيات</td><td contenteditable="true">حاسب</td><td contenteditable="true">إسلاميات</td><td contenteditable="true">فيزياء</td></tr>
-                  <tr><td>الثلاثاء</td><td contenteditable="true">كيمياء</td><td contenteditable="true">أحياء</td><td contenteditable="true">رياضيات</td><td contenteditable="true">إنجليزي</td><td contenteditable="true">لغة عربية</td></tr>
-                  <tr><td>الأربعاء</td><td contenteditable="true">فيزياء</td><td contenteditable="true">حاسب</td><td contenteditable="true">إسلاميات</td><td contenteditable="true">رياضيات</td><td contenteditable="true">كيمياء</td></tr>
-                  <tr><td>الخميس</td><td contenteditable="true">إنجليزي</td><td contenteditable="true">أحياء</td><td contenteditable="true">لغة عربية</td><td contenteditable="true">تربية بدنية</td><td contenteditable="true">نشاط</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="row" style="margin-top:15px">
-              <button class="btn" onclick="alert('تم حفظ الجدول على هذا الجهاز!')">حفظ الجدول</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- صفحة الأدوات الدراسية -->
-        <section class="page" id="page-tools">
-          <div class="pagehead">
-            <div><h2>🧮 أدوات دراسية</h2><p>أدوات بسيطة تساعدك على التخطيط والحساب.</p></div>
-            <span class="tag">أدوات الطالب</span>
-          </div>
-          <div class="grid two">
-            <article class="card">
-              <div class="cardhead"><div class="iconbox">🎯</div><h3>حاسبة النسبة المئوية</h3></div>
-              <label class="fieldlabel">درجتك</label>
-              <input class="field" id="gradeGot" min="0" placeholder="مثال: 45" type="number"/>
-              <label class="fieldlabel">الدرجة الكاملة</label>
-              <input class="field" id="gradeTotal" min="1" placeholder="مثال: 50" type="number"/>
-              <button class="btn" onclick="calcGrade()">احسب النسبة</button>
-              <div class="output" id="gradeResult">ستظهر النسبة هنا.</div>
-            </article>
-            <article class="card">
-              <div class="cardhead"><div class="iconbox">📅</div><h3>كم باقي على موعد؟</h3></div>
-              <label class="fieldlabel">اسم الموعد</label>
-              <input class="field" id="eventName" placeholder="مثال: اختبار الرياضيات"/>
-              <label class="fieldlabel">التاريخ</label>
-              <input class="field" id="eventDate" type="date"/>
-              <button class="btn" onclick="calcDays()">احسب المدة</button>
-              <div class="output" id="daysResult">اختر التاريخ لعرض المدة.</div>
-            </article>
-          </div>
-        </section>
-
-        <!-- صفحة المنصات التعليمية -->
-        <section class="page" id="page-resources">
-          <div class="pagehead">
-            <div><h2>🔗 منصات تعليمية</h2><p>روابط مباشرة لمنصات تعليمية ومصادر رسمية مفيدة.</p></div>
-            <span class="tag">مصادر خارجية</span>
-          </div>
-          <div class="resourcegrid">
-            <a class="resource" href="https://ien.edu.sa/" rel="noopener" target="_blank"><span class="emoji">🏫</span><span><b>منصة عين التعليمية</b><small>مصدر تعليمي سعودي للدروس والمقررات.</small></span><span class="arrow">↗️</span></a>
-            <a class="resource" href="https://www.moe.gov.sa/" rel="noopener" target="_blank"><span class="emoji">🏛️</span><span><b>وزارة التعليم السعودية</b><small>الأخبار والخدمات والمعلومات الرسمية.</small></span><span class="arrow">↗️</span></a>
-            <a class="resource" href="https://schools.madrasati.sa/" rel="noopener" target="_blank"><span class="emoji">🧑‍🎓</span><span><b>منصة مدرستي</b><small>الوصول إلى خدمات منصة مدرستي.</small></span><span class="arrow">↗️</span></a>
-            <a class="resource" href="https://noor.moe.gov.sa/Noor/Login.aspx" rel="noopener" target="_blank"><span class="emoji">📊</span><span><b>نظام نور</b><small>خدمات الطلاب وأولياء الأمور والنتائج.</small></span><span class="arrow">↗️</span></a>
-          </div>
-        </section>
-
-        <!-- صفحة متابعة الدرجات -->
-        <section class="page" id="page-grades">
-          <div class="pagehead">
-            <div><h2>📊 متابعة الدرجات</h2><p>سجّل درجاتك بنفسك وتابع متوسطك التقريبي.</p></div>
-            <span class="tag">سجل الطالب</span>
-          </div>
-          <div class="card">
-            <div class="cardhead"><div class="iconbox">🔗</div><h3>الدرجات الرسمية في نظام نور</h3></div>
-            <p>افتح نظام نور للاطلاع على درجاتك الرسمية، ثم يمكنك تسجيلها هنا يدويًا لمتابعة النسبة والتوقع.</p>
-            <a class="btn" href="https://noor.moe.gov.sa/Noor/Login.aspx" target="_blank">الانتقال إلى نظام نور ↗️</a>
-          </div>
-        </section>
-
-      </main>
+      <span class="spacer"></span>
+      <span class="hijri" id="hijri"></span>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="تبديل المظهر" title="تبديل المظهر"><svg class="icon"><use href="#i-moon"/></svg></button>
     </div>
+  </header>
+
+  <div class="layout">
+    <nav class="rail" aria-label="أقسام البوابة">
+      <div class="rail-label">الرئيسية</div>
+      <button class="nav" data-go="dashboard"><svg class="icon"><use href="#i-home"/></svg>لوحة الطالب</button>
+      <button class="nav" data-go="quizzes"><svg class="icon"><use href="#i-exam"/></svg>اختبارات قدرات وتحصيلي</button>
+      <button class="nav" data-go="qudrat"><svg class="icon"><use href="#i-ruler"/></svg>شروحات القدرات</button>
+      <button class="nav" data-go="ai"><svg class="icon"><use href="#i-spark"/></svg>المساعد الذكي<span class="badge">AI</span></button>
+      <div class="rail-label">أدوات الطالب</div>
+      <button class="nav" data-go="subjects"><svg class="icon"><use href="#i-book"/></svg>المواد الدراسية</button>
+      <button class="nav" data-go="lessons"><svg class="icon"><use href="#i-play"/></svg>روابط الشروحات</button>
+      <button class="nav" data-go="planner"><svg class="icon"><use href="#i-cal"/></svg>جدول المذاكرة</button>
+      <button class="nav" data-go="tools"><svg class="icon"><use href="#i-calc"/></svg>أدوات الحساب</button>
+      <button class="nav" data-go="resources"><svg class="icon"><use href="#i-link"/></svg>منصات تعليمية</button>
+    </nav>
+
+    <main>
+      <!-- ============ لوحة الطالب ============ -->
+      <section class="page" id="page-dashboard">
+        <div class="panel raised welcome">
+          <div class="intro">
+            <span class="eyebrow">مساحتك الدراسية</span>
+            <h2>تدرّب اليوم، وتفوّق في الاختبار.</h2>
+            <p>اختبارات قدرات وتحصيلي بأسئلة جديدة في كل محاولة، وشروحات مركّزة، ومساعد ذكي يجاوب أسئلتك ويشرح أخطاءك.</p>
+            <div class="row">
+              <button class="btn" data-start="qudrat">ابدأ اختبار القدرات</button>
+              <button class="btn ghost" data-start="tahsili">ابدأ التحصيلي</button>
+            </div>
+          </div>
+          <div class="figures">
+            <div class="fig"><b id="stCount">0</b><span>اختبارات منجزة</span></div>
+            <div class="fig"><b id="stBest">—</b><span>أفضل نتيجة</span></div>
+            <div class="fig"><b id="stAvg">—</b><span>متوسط النتائج</span></div>
+            <div class="fig"><b id="stLast">—</b><span>آخر نتيجة</span></div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="panel stack">
+            <div class="row between"><h3>آخر نتائجك</h3><button class="btn ghost sm" data-go="quizzes">كل المحاولات</button></div>
+            <div class="hist" id="dashHistory"></div>
+          </div>
+          <div class="panel stack">
+            <div class="row"><svg class="icon" style="color:var(--gold)"><use href="#i-spark"/></svg><h3>اسأل المساعد الذكي</h3></div>
+            <p class="muted">اكتب سؤالك في أي مادة أو أي موضوع في القدرات، وسيشرحه لك خطوة بخطوة.</p>
+            <form class="stack" id="quickAsk">
+              <textarea class="field" id="quickAskInput" rows="3" placeholder="مثال: كيف أفرّق بين أسئلة التناظر اللفظي؟"></textarea>
+              <div class="row"><button class="btn" type="submit">اسأل الآن</button></div>
+            </form>
+          </div>
+        </div>
+
+        <div class="grid three">
+          <button class="panel resource" data-go="qudrat"><span class="mark">ق</span><span class="t"><b>شروحات القدرات</b><small>قواعد وأمثلة محلولة للكمي واللفظي</small></span></button>
+          <button class="panel resource" data-go="planner"><span class="mark g">٢٥</span><span class="t"><b>جلسة تركيز</b><small>مؤقت بومودورو وجدول الحصص</small></span></button>
+          <button class="panel resource" data-go="lessons"><span class="mark">ش</span><span class="t"><b>روابط الشروحات</b><small>فيديوهات القدرات والتحصيلي والمواد</small></span></button>
+        </div>
+        <p class="foot">بوابة ثانوية الكسائي التعليمية</p>
+      </section>
+
+      <!-- ============ الاختبارات ============ -->
+      <section class="page" id="page-quizzes" hidden>
+        <div class="pagehead">
+          <div><span class="eyebrow">محاكاة تدريبية</span><h2>اختبارات القدرات والتحصيلي</h2><p>25 سؤالًا في 25 دقيقة. الأسئلة الحسابية بأرقام جديدة كل مرة، وأسئلة المفاهيم لا تتكرر حتى تنتهي كلها.</p></div>
+        </div>
+
+        <div id="exam-setup" class="stack" style="gap:20px">
+          <div class="grid">
+            <article class="panel raised examcard">
+              <div class="row"><span class="mark">ق</span><div><h3>اختبار القدرات العامة</h3><div class="meta"><span class="chip">25 سؤالًا</span><span class="chip gold">25 دقيقة</span></div></div></div>
+              <ul>
+                <li><b>كمي (12):</b> النسب، المتوسطات، الجبر، الهندسة، المقارنات، المتتابعات.</li>
+                <li><b>لفظي (13):</b> التناظر، إكمال الجمل، الخطأ السياقي، المفردة الشاذة، المقروء.</li>
+              </ul>
+              <div class="row"><button class="btn" data-start="qudrat">ابدأ اختبار القدرات</button></div>
+            </article>
+            <article class="panel raised examcard">
+              <div class="row"><span class="mark g">ت</span><div><h3>الاختبار التحصيلي</h3><div class="meta"><span class="chip">25 سؤالًا</span><span class="chip gold">25 دقيقة</span></div></div></div>
+              <ul>
+                <li><b>رياضيات (7):</b> التفاضل، النهايات، اللوغاريتمات، المعادلات.</li>
+                <li><b>فيزياء (6) • كيمياء (6) • أحياء (6):</b> مفاهيم ومسائل المرحلة الثانوية.</li>
+              </ul>
+              <div class="row"><button class="btn" data-start="tahsili">ابدأ الاختبار التحصيلي</button></div>
+            </article>
+          </div>
+          <div class="notice">يبدأ المؤقت فور بدء الاختبار، ويمكنك التنقل بين الأسئلة وتغيير إجاباتك قبل الإنهاء. ينتهي الاختبار ويُصحَّح تلقائيًا عند انتهاء الوقت، ثم تظهر النتيجة مع شرح كل سؤال، ويمكنك طلب شرح إضافي من المساعد الذكي. هذه اختبارات تدريبية وليست صادرة عن هيئة تقويم التعليم والتدريب.</div>
+          <div class="panel stack">
+            <div class="row between"><h3>سجل محاولاتك</h3><button class="btn danger sm" id="clearHist" type="button">مسح السجل</button></div>
+            <div class="hist" id="examHistory"></div>
+          </div>
+        </div>
+
+        <div id="exam-run" class="stack" hidden>
+          <div class="panel raised exambar">
+            <div><b id="exTitle">اختبار</b><small id="exAnswered" class="num">أجبت عن 0 من 25</small></div>
+            <div class="row">
+              <span class="timer" id="exTimer"><svg class="icon"><use href="#i-clock"/></svg><span id="exTime">25:00</span></span>
+              <button class="btn" id="finishBtn" type="button">إنهاء وتصحيح</button>
+            </div>
+          </div>
+          <div class="examgrid">
+            <div class="panel" id="exQuestion"></div>
+            <aside class="panel">
+              <h3 style="font-size:15px">خريطة الأسئلة</h3>
+              <div class="qnav" id="exNav"></div>
+              <div class="legend"><span><i class="a"></i>مُجاب</span><span><i></i>لم يُجب</span></div>
+              <button class="btn danger sm" style="width:100%;margin-top:14px" id="quitBtn" type="button">إلغاء الاختبار</button>
+            </aside>
+          </div>
+        </div>
+
+        <div id="exam-result" class="stack" hidden></div>
+      </section>
+
+      <!-- ============ شروحات القدرات ============ -->
+      <section class="page" id="page-qudrat" hidden>
+        <div class="pagehead">
+          <div><span class="eyebrow">مراجعة مركّزة</span><h2>شروحات القدرات</h2><p>القاعدة الأساسية لكل نوع من الأسئلة، مع مثال محلول، وزر يطلب من المساعد الذكي شرحًا وأمثلة إضافية.</p></div>
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" data-tab="q" aria-selected="true">الكمي</button>
+            <button class="tab" role="tab" data-tab="v" aria-selected="false">اللفظي</button>
+            <button class="tab" role="tab" data-tab="t" aria-selected="false">استراتيجيات</button>
+          </div>
+        </div>
+
+        <div class="grid" id="tab-q">
+          <article class="panel lesson">
+            <h3>النسب المئوية</h3>
+            <div class="rule">الجزء = (النسبة ÷ 100) × الكل</div>
+            <ul><li>10% = اقسم على 10، و 5% = نصف الـ 10%.</li><li>25% ربع، 50% نصف، 75% ثلاثة أرباع.</li><li>السعر بعد خصم 20% = السعر × 0.8.</li><li>زاد 25% فأصبح X ← الأصل = X ÷ 1.25.</li></ul>
+            <details class="ex"><summary>مثال: ما قيمة 35% من 80؟</summary><div class="sol">10% من 80 = 8، إذن 30% = 24، و 5% = 4، فيكون 35% = <b>28</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="النسب المئوية في القدرات الكمي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات كمي النسب المئوية">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>النسبة والتناسب</h3>
+            <div class="rule">قيمة الجزء = المقدار ÷ مجموع أجزاء النسبة</div>
+            <ul><li>اجمع أجزاء النسبة، ثم اقسم المقدار عليها.</li><li>طردي: يزيد أحدهما فيزيد الآخر (الكمية والسعر).</li><li>عكسي: يزيد أحدهما فيقل الآخر (العمال والأيام).</li></ul>
+            <details class="ex"><summary>مثال: قُسّم 120 بنسبة 2 : 3، فما الجزآن؟</summary><div class="sol">مجموع الأجزاء 5، قيمة الجزء 24، فالجزآن <b>48 و 72</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="النسبة والتناسب في القدرات الكمي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات كمي النسبة والتناسب">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>المتوسط الحسابي</h3>
+            <div class="rule">المجموع = المتوسط × عدد القيم</div>
+            <ul><li>عند إضافة عدد أو حذفه: احسب المجموع قبل وبعد، والفرق هو العدد.</li><li>إضافة العدد نفسه لكل القيم ترفع المتوسط بالمقدار نفسه.</li></ul>
+            <details class="ex"><summary>مثال: متوسط 5 أعداد 12، حُذف عدد فصار متوسط الباقي 11.</summary><div class="sol">المجموع قبل 60، وبعد 44، فالعدد المحذوف <b>16</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="المتوسط الحسابي في القدرات الكمي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات كمي المتوسط الحسابي">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>أسئلة المقارنة</h3>
+            <div class="rule">الأولى أكبر • الثانية أكبر • متساويتان • المعطيات غير كافية</div>
+            <ul><li>بلا متغيرات لا يكون الجواب «غير كافية».</li><li>مع المتغيرات جرّب: 0، 1، −1، ½، وعددًا كبيرًا.</li><li>تغيّرت النتيجة بين تجربتين ← <b>المعطيات غير كافية</b>.</li></ul>
+            <details class="ex"><summary>مثال: س عدد حقيقي. قارن: س² و س</summary><div class="sol">س = 2: الأولى أكبر، س = ½: الثانية أكبر ← <b>المعطيات غير كافية</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="أسئلة المقارنة في القدرات الكمي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات كمي أسئلة المقارنة">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>الهندسة</h3>
+            <div class="rule">الوتر² = الضلع الأول² + الضلع الثاني²</div>
+            <ul><li>ثلاثيات مشهورة: (3، 4، 5) • (5، 12، 13) • (8، 15، 17).</li><li>مساحة الدائرة π نق²، ومحيطها 2π نق.</li><li>زوايا المثلث 180°، والرباعي 360°.</li><li>مساحة المربع = القطر² ÷ 2.</li></ul>
+            <details class="ex"><summary>مثال: مربع قطره 10 سم، ما مساحته؟</summary><div class="sol">10² ÷ 2 = <b>50 سم²</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="الهندسة في القدرات الكمي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات كمي الهندسة">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>السرعة والعمل</h3>
+            <div class="rule">المسافة = السرعة × الزمن • العمل = العمال × الأيام</div>
+            <ul><li>حوّل الدقائق إلى ساعات (30 دقيقة = ½ ساعة).</li><li>العمال والأيام تناسب عكسي.</li></ul>
+            <details class="ex"><summary>مثال: 150 كم في ساعتين ونصف، ما السرعة؟</summary><div class="sol">150 ÷ 2.5 = <b>60 كم/ساعة</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="مسائل السرعة والعمل في القدرات الكمي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات كمي السرعة والمسافة والزمن">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>المتتابعات</h3>
+            <div class="rule">فرق ثابت (حسابية) أو نسبة ثابتة (هندسية)</div>
+            <ul><li>اطرح كل حد من التالي؛ إن ثبت الفرق فهي حسابية.</li><li>اقسم كل حد على السابق؛ إن ثبتت النسبة فهي هندسية.</li><li>وإلا انظر إلى فرق الفروق أو تبادل نمطين.</li></ul>
+            <details class="ex"><summary>مثال: 2، 6، 18، 54، ...</summary><div class="sol">كل حد × 3 ← <b>162</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="المتتابعات في القدرات الكمي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات كمي المتتابعات">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>الجبر والأسس</h3>
+            <div class="rule">أ<sup>م</sup> × أ<sup>ن</sup> = أ<sup>م+ن</sup> • أ<sup>م</sup> ÷ أ<sup>ن</sup> = أ<sup>م−ن</sup></div>
+            <ul><li>انقل الثوابت لطرف، ثم اقسم على معامل المتغير.</li><li>عوّض بالخيارات إن كان الحل المباشر طويلًا.</li><li>(أ + ب)² = أ² + 2أب + ب²</li></ul>
+            <details class="ex"><summary>مثال: 3س − 7 = 20</summary><div class="sol">3س = 27 ← س = <b>9</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="الجبر والأسس في القدرات الكمي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات كمي الجبر">فيديوهات</a></div>
+          </article>
+        </div>
+
+        <div class="grid" id="tab-v" hidden>
+          <article class="panel lesson">
+            <h3>التناظر اللفظي</h3>
+            <div class="rule">حدد العلاقة، وكوّن جملة تربط الكلمتين، وطبّقها على الخيارات</div>
+            <ul><li>علاقات شائعة: أداة واستخدام • جزء وكل • تضاد • سبب ونتيجة • عامل ومكان • صانع ومادة.</li><li>حافظ على الترتيب: (قلم : كتابة) ليست (قص : مقص).</li><li>إذا انطبقت الجملة على أكثر من خيار فاجعلها أدق.</li></ul>
+            <details class="ex"><summary>مثال: قلم : كتابة</summary><div class="sol">القلم أداة للكتابة ← <b>مقص : قص</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="التناظر اللفظي في القدرات اللفظي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات لفظي التناظر اللفظي">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>إكمال الجمل</h3>
+            <div class="rule">اقرأ الجملة كاملة وابحث عن أدوات الربط أولًا</div>
+            <ul><li>(لكن، رغم، بينما) تدل على تضاد.</li><li>(لذلك، فـ، بسبب) تدل على نتيجة أو سبب.</li><li>ضع الخيار في الفراغ واقرأ الجملة كاملة.</li></ul>
+            <details class="ex"><summary>مثال: رغم صعوبة الطريق ...... المتسابق السباق بنجاح.</summary><div class="sol">«رغم» تدل على تضاد ← <b>أنهى</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="إكمال الجمل في القدرات اللفظي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات لفظي إكمال الجمل">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>الخطأ السياقي</h3>
+            <div class="rule">الكلمة التي تُفسد المعنى العام، وغالبًا صوابها ضدها</div>
+            <ul><li>افهم فكرة الجملة أولًا.</li><li>استبدل كل خيار بضده؛ الذي يستقيم المعنى بعكسه هو الخطأ.</li><li>الخطأ في المعنى لا في النحو أو الإملاء.</li></ul>
+            <details class="ex"><summary>مثال: الرياضة المنتظمة تُضعف الجسم وتحسّن الصحة النفسية.</summary><div class="sol">الصواب «تقوّي» ← الخطأ <b>تُضعف</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="الخطأ السياقي في القدرات اللفظي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات لفظي الخطأ السياقي">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>المفردة الشاذة</h3>
+            <div class="rule">صفة تجمع ثلاث كلمات وتُخرج الرابعة</div>
+            <ul><li>صنّف حسب النوع أو الاستخدام أو المكان أو المعنى أو الشكل.</li><li>إن وجدت تصنيفين فاختر الأوضح.</li></ul>
+            <details class="ex"><summary>مثال: مثلث • مربع • دائرة • مكعب</summary><div class="sol">الثلاثة أشكال مستوية، والمكعب مجسّم ← <b>مكعب</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="المفردة الشاذة (الارتباط والاختلاف) في القدرات اللفظي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات لفظي المفردة الشاذة">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>استيعاب المقروء</h3>
+            <div class="rule">الإجابة من النص فقط، لا من معلوماتك الخاصة</div>
+            <ul><li>اقرأ السؤال أولًا ثم ابحث عن موضع الإجابة.</li><li>احذر الكلمات المطلقة: دائمًا، أبدًا، فقط، جميع.</li><li>الفكرة الرئيسة تشمل النص كله.</li><li>معنى الكلمة يُفهم من سياقها.</li></ul>
+            <div class="row"><button class="btn ghost sm" data-ask="استيعاب المقروء في القدرات اللفظي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات لفظي استيعاب المقروء">فيديوهات</a></div>
+          </article>
+          <article class="panel lesson">
+            <h3>المفردات</h3>
+            <div class="rule">اعرف جذر الكلمة، واستعن بسياق ورَدَت فيه</div>
+            <ul><li>دوّن الكلمات التي تخطئ فيها وراجعها يوميًا.</li><li>في أسئلة الضد: حدد المعنى أولًا ثم عكسه.</li></ul>
+            <details class="ex"><summary>مثال: ما مضاد (الإقدام)؟</summary><div class="sol">الإقدام الجرأة والتقدم ← ضدها <b>الإحجام</b>.</div></details>
+            <div class="row"><button class="btn ghost sm" data-ask="المفردات (المعنى والضد) في القدرات اللفظي">اشرح لي أكثر</button><a class="btn ghost sm" data-yt="شرح قدرات لفظي المفردات">فيديوهات</a></div>
+          </article>
+        </div>
+
+        <div class="grid" id="tab-t" hidden>
+          <article class="panel lesson"><h3>إدارة الوقت</h3><ul><li>لا تقف طويلًا عند سؤال صعب؛ تجاوزه وارجع له.</li><li>ابدأ بما تعرفه لتكسب الوقت والثقة.</li><li>في التدريب: دقيقة واحدة للسؤال في المتوسط.</li></ul></article>
+          <article class="panel lesson"><h3>الحذف والتخمين</h3><ul><li>استبعد الخيارات الخاطئة الواضحة أولًا.</li><li>في الكمي: عوّض بالخيارات بدل الحل الطويل.</li><li>أجب عن كل الأسئلة؛ التخمين المدروس أفضل من الترك.</li></ul></article>
+          <article class="panel lesson"><h3>خطة المذاكرة</h3><ul><li>اختبار تدريبي يوميًا، ثم راجع كل خطأ وشرحه.</li><li>سجّل أنواع الأسئلة التي تخطئ فيها وركّز عليها.</li><li>وازن بين الكمي واللفظي.</li></ul><div class="row"><button class="btn ghost sm" data-ask-raw="ضع لي خطة مذاكرة لاختبار القدرات مدتها 4 أسابيع، بساعة يوميًا، تغطي الكمي واللفظي وتتضمن اختبارات تدريبية.">اطلب خطة من المساعد</button></div></article>
+          <article class="panel lesson"><h3>المصدر الرسمي</h3><p class="muted">اختبارات القدرات والتحصيلي تقدّمها هيئة تقويم التعليم والتدريب، ومن موقعها تعرف المواعيد والتسجيل.</p><div class="row"><a class="btn ghost sm" href="https://www.etec.gov.sa/" target="_blank" rel="noopener">موقع الهيئة <svg class="icon" style="width:16px;height:16px"><use href="#i-out"/></svg></a></div></article>
+        </div>
+      </section>
+
+      <!-- ============ المساعد الذكي ============ -->
+      <section class="page" id="page-ai" hidden>
+        <div class="pagehead">
+          <div><span class="eyebrow">ذكاء اصطناعي</span><h2>المساعد الذكي</h2><p>معلم خصوصي يشرح الدروس، ويحل المسائل خطوة بخطوة، ويختبرك بأسئلة مراجعة.</p></div>
+          <button class="btn ghost sm" id="clearChat" type="button">محادثة جديدة</button>
+        </div>
+        <div class="ai-wrap">
+          <div class="panel raised chat">
+            <div class="chat-log" id="chatLog" aria-live="polite"></div>
+            <form class="composer" id="chatForm">
+              <textarea class="field" id="chatInput" rows="1" placeholder="اكتب سؤالك هنا..."></textarea>
+              <button class="btn" id="sendBtn" type="submit" aria-label="إرسال"><svg class="icon"><use href="#i-send"/></svg></button>
+              <button class="btn danger" id="stopBtn" type="button" hidden>إيقاف</button>
+            </form>
+          </div>
+          <aside class="stack">
+            <div class="panel stack">
+              <label class="lbl" for="aiSubject">المادة</label>
+              <select class="field" id="aiSubject">
+                <option value="">عامة</option>
+                <option>القدرات - كمي</option><option>القدرات - لفظي</option>
+                <option>الرياضيات</option><option>الفيزياء</option><option>الكيمياء</option><option>الأحياء</option>
+                <option>اللغة العربية</option><option>اللغة الإنجليزية</option><option>الدراسات الإسلامية</option>
+              </select>
+            </div>
+            <div class="panel stack">
+              <h3 style="font-size:15px">ابدأ بسرعة</h3>
+              <div class="starter" id="starters">
+                <button type="button" data-fill="اشرح لي درس: ">اشرح لي درسًا</button>
+                <button type="button" data-fill="حل هذه المسألة خطوة بخطوة: ">حل مسألة خطوة بخطوة</button>
+                <button type="button" data-fill="لخّص لي هذا الدرس في نقاط: ">لخّص لي درسًا</button>
+                <button type="button" data-fill="اختبرني بخمسة أسئلة اختيار من متعدد عن: ">اختبرني بأسئلة</button>
+                <button type="button" data-send="أعطني 3 أسئلة قدرات كمي متوسطة الصعوبة مع الحل بعد كل سؤال.">3 أسئلة قدرات كمي محلولة</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ المواد ============ -->
+      <section class="page" id="page-subjects" hidden>
+        <div class="pagehead"><div><span class="eyebrow">مكتبة المواد</span><h2>المواد الدراسية</h2><p>شروحات فيديو لكل مادة، أو اسأل المساعد الذكي مباشرة.</p></div></div>
+        <div class="grid three" id="subjectsGrid"></div>
+      </section>
+
+      <!-- ============ روابط الشروحات ============ -->
+      <section class="page" id="page-lessons" hidden>
+        <div class="pagehead"><div><span class="eyebrow">مكتبة الفيديو</span><h2>روابط الشروحات</h2><p>ابحث عن أي درس، أو اختر من المواضيع الجاهزة.</p></div></div>
+        <div class="panel stack">
+          <label class="lbl" for="lessonSearch">ابحث عن شرح</label>
+          <div class="row">
+            <input class="field" id="lessonSearch" placeholder="مثال: قوانين نيوتن" style="flex:1;min-width:180px">
+            <a class="btn" id="lessonGo" target="_blank" rel="noopener" href="https://www.youtube.com/">ابحث في يوتيوب <svg class="icon" style="width:16px;height:16px"><use href="#i-out"/></svg></a>
+          </div>
+          <div class="row">
+            <a class="btn ghost sm" data-yt="تأسيس قدرات كمي">تأسيس قدرات كمي</a>
+            <a class="btn ghost sm" data-yt="تأسيس قدرات لفظي">تأسيس قدرات لفظي</a>
+            <a class="btn ghost sm" data-yt="مراجعة تحصيلي رياضيات">تحصيلي رياضيات</a>
+            <a class="btn ghost sm" data-yt="مراجعة تحصيلي فيزياء">تحصيلي فيزياء</a>
+            <a class="btn ghost sm" data-yt="مراجعة تحصيلي كيمياء">تحصيلي كيمياء</a>
+            <a class="btn ghost sm" data-yt="مراجعة تحصيلي أحياء">تحصيلي أحياء</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ جدول المذاكرة ============ -->
+      <section class="page" id="page-planner" hidden>
+        <div class="pagehead"><div><span class="eyebrow">خطة شخصية</span><h2>جدول المذاكرة</h2><p>25 دقيقة تركيز ثم 5 دقائق راحة، وجدول حصص تعدّله بنفسك.</p></div></div>
+        <div class="grid">
+          <div class="panel raised stack">
+            <h3>جلسة تركيز</h3>
+            <div class="bigclock" id="pomoTime">25:00</div>
+            <div class="row" style="justify-content:center">
+              <button class="btn" id="pomoStart" type="button">ابدأ</button>
+              <button class="btn ghost" id="pomoPause" type="button">إيقاف مؤقت</button>
+              <button class="btn ghost" id="pomoReset" type="button">إعادة</button>
+            </div>
+          </div>
+          <div class="panel stack">
+            <h3>لماذا 25 دقيقة؟</h3>
+            <p class="muted">الفترات القصيرة بتركيز كامل تقلل التشتت والإجهاد. بعد كل أربع جلسات خذ استراحة أطول من 15 إلى 30 دقيقة.</p>
+          </div>
+        </div>
+        <div class="panel stack">
+          <div class="row between"><h3>جدول الحصص</h3><span class="muted">اضغط على أي خانة لتعديلها، ويُحفظ تلقائيًا.</span></div>
+          <div class="tablewrap">
+            <table class="sched">
+              <thead><tr><th>اليوم</th><th>الأولى</th><th>الثانية</th><th>الثالثة</th><th>الرابعة</th><th>الخامسة</th></tr></thead>
+              <tbody id="schedBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ الأدوات ============ -->
+      <section class="page" id="page-tools" hidden>
+        <div class="pagehead"><div><span class="eyebrow">أدوات الطالب</span><h2>أدوات الحساب</h2></div></div>
+        <div class="grid">
+          <form class="panel stack" id="gradeForm">
+            <h3>حاسبة النسبة المئوية</h3>
+            <div><label class="lbl" for="gradeGot">درجتك</label><input class="field" id="gradeGot" type="number" min="0" step="any" value="45"></div>
+            <div><label class="lbl" for="gradeTotal">الدرجة الكاملة</label><input class="field" id="gradeTotal" type="number" min="1" step="any" value="50"></div>
+            <div class="row"><button class="btn" type="submit">احسب</button></div>
+            <div class="out num" id="gradeResult">النسبة المئوية: 90.0%</div>
+          </form>
+          <form class="panel stack" id="daysForm">
+            <h3>كم باقي على موعد؟</h3>
+            <div><label class="lbl" for="eventName">اسم الموعد</label><input class="field" id="eventName" value="اختبار القدرات"></div>
+            <div><label class="lbl" for="eventDate">التاريخ</label><input class="field" id="eventDate" type="date"></div>
+            <div class="row"><button class="btn" type="submit">احسب المدة</button></div>
+            <div class="out" id="daysResult">اختر التاريخ لعرض المدة.</div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============ المنصات ============ -->
+      <section class="page" id="page-resources" hidden>
+        <div class="pagehead"><div><span class="eyebrow">مصادر رسمية</span><h2>منصات تعليمية</h2></div></div>
+        <div class="grid">
+          <a class="panel resource" href="https://www.etec.gov.sa/" target="_blank" rel="noopener"><span class="mark g">ه</span><span class="t"><b>هيئة تقويم التعليم والتدريب</b><small>التسجيل في القدرات والتحصيلي ومواعيدها</small></span><svg class="icon"><use href="#i-out"/></svg></a>
+          <a class="panel resource" href="https://noor.moe.gov.sa/Noor/Login.aspx" target="_blank" rel="noopener"><span class="mark">ن</span><span class="t"><b>نظام نور</b><small>الدرجات الرسمية وخدمات الطلاب</small></span><svg class="icon"><use href="#i-out"/></svg></a>
+          <a class="panel resource" href="https://schools.madrasati.sa/" target="_blank" rel="noopener"><span class="mark">م</span><span class="t"><b>منصة مدرستي</b><small>الدروس والواجبات الرسمية</small></span><svg class="icon"><use href="#i-out"/></svg></a>
+          <a class="panel resource" href="https://ien.edu.sa/" target="_blank" rel="noopener"><span class="mark">ع</span><span class="t"><b>منصة عين</b><small>دروس ومقررات وزارة التعليم</small></span><svg class="icon"><use href="#i-out"/></svg></a>
+          <a class="panel resource" href="https://www.moe.gov.sa/" target="_blank" rel="noopener"><span class="mark">و</span><span class="t"><b>وزارة التعليم</b><small>الأخبار والخدمات الرسمية</small></span><svg class="icon"><use href="#i-out"/></svg></a>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <!-- البرمجة السلوكية بلغة JavaScript -->
-  <script>
-    // التنقل بين الصفحات
-    function go(pageId) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.navbtn').forEach(btn => btn.classList.remove('active'));
-      
-      const targetPage = document.getElementById('page-' + pageId);
-      if(targetPage) targetPage.classList.add('active');
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalMsg">
+      <p id="modalMsg"></p>
+      <div class="row"><button class="btn" id="modalOk" type="button">تأكيد</button><button class="btn ghost" id="modalCancel" type="button">تراجع</button></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" hidden></div>
+</div>
 
-      const activeBtn = document.querySelector(`.navbtn[onclick*="${pageId}"]`);
-      if(activeBtn) activeBtn.classList.add('active');
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+<script>
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const yt = q => 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q);
+
+  /* ---------- ui helpers ---------- */
+  function ask(msg, ok = 'تأكيد', danger = false) {
+    return new Promise(res => {
+      const m = $('#modal'), b = $('#modalOk'), c = $('#modalCancel');
+      $('#modalMsg').textContent = msg; b.textContent = ok; b.className = 'btn' + (danger ? ' danger' : '');
+      m.hidden = false; b.focus();
+      const done = v => { m.hidden = true; b.onclick = c.onclick = null; res(v); };
+      b.onclick = () => done(true); c.onclick = () => done(false);
+    });
+  }
+  let toastT;
+  function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2800); }
+
+  /* ---------- theme ---------- */
+  (function () { const t = store.get('ksai_theme', ''); if (t) document.documentElement.setAttribute('data-theme', t); })();
+  $('#themeBtn').onclick = () => {
+    const root = document.documentElement;
+    const cur = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next); store.set('ksai_theme', next);
+  };
+  try { $('#hijri').textContent = new Date().toLocaleDateString('ar-SA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) {}
+
+  /* ---------- navigation ---------- */
+  function go(id) {
+    $$('.page').forEach(p => p.hidden = p.id !== 'page-' + id);
+    $$('.nav').forEach(n => { if (n.dataset.go === id) n.setAttribute('aria-current', 'page'); else n.removeAttribute('aria-current'); });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'ai') setTimeout(() => $('#chatInput').focus(), 50);
+  }
+  document.addEventListener('click', e => {
+    const g = e.target.closest('[data-go]'); if (g) { go(g.dataset.go); return; }
+    const s = e.target.closest('[data-start]'); if (s) { startExam(s.dataset.start); return; }
+    const a = e.target.closest('[data-ask]'); if (a) { askAI(`اشرح لي ${a.dataset.ask} بأسلوب مبسّط، مع القاعدة والطريقة السريعة، ثم مثالين محلولين بمستوى اختبار القدرات.`); return; }
+    const r = e.target.closest('[data-ask-raw]'); if (r) { askAI(r.dataset.askRaw); return; }
+  });
+  $$('[data-yt]').forEach(a => { a.href = yt(a.dataset.yt); a.target = '_blank'; a.rel = 'noopener'; });
+
+  $$('.tab').forEach(t => t.onclick = () => {
+    $$('.tab').forEach(x => x.setAttribute('aria-selected', String(x === t)));
+    ['q', 'v', 't'].forEach(k => $('#tab-' + k).hidden = k !== t.dataset.tab);
+  });
+
+  /* ==BANK START== */
+    const rnd = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+    function shuffle(a) { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+    const m = s => `<span class="m">${s}</span>`;
+    const CMP = ['القيمة الأولى أكبر', 'القيمة الثانية أكبر', 'القيمتان متساويتان', 'المعطيات غير كافية'];
+
+    function wrongNums(ans, cands) {
+      const out = [], seen = new Set([String(+(+ans).toFixed(3))]);
+      const push = c => {
+        if (out.length >= 3 || !Number.isFinite(c)) return;
+        if (Number.isInteger(ans) && !Number.isInteger(c)) return;
+        if (ans > 0 && c <= 0) return;
+        const k = String(+c.toFixed(3));
+        if (!seen.has(k)) { seen.add(k); out.push(+c.toFixed(3)); }
+      };
+      cands.forEach(push);
+      for (const s of [1, -1, 2, -2, 3, 5, -3, 4, 6, 10, -5, 7, 8, 9, 12]) { if (out.length >= 3) break; push(ans + s); }
+      return out;
+    }
+    function build(sec, topic, q, items, exp, keep) {
+      if (!keep) items = shuffle(items);
+      return { sec, topic, q, choices: items.map(i => i.t), a: items.findIndex(i => i.ok), exp };
+    }
+    function numQ(sec, topic, q, ans, cands, exp, fmt = x => x) {
+      const items = [{ t: fmt(ans), ok: true }, ...wrongNums(ans, cands).map(x => ({ t: fmt(x), ok: false }))];
+      return build(sec, topic, q, items, exp);
+    }
+    function txtQ(sec, topic, q, correct, wrongs, exp) {
+      const w = [...new Set(wrongs.filter(x => x !== correct))].slice(0, 3);
+      return build(sec, topic, q, [{ t: correct, ok: true }, ...w.map(t => ({ t, ok: false }))], exp);
+    }
+    function cmpQ(cond, A, B, ans, exp) {
+      const q = `قارن بين القيمتين:${cond ? ` <span class="cond">(${cond})</span>` : ''}<div class="cmpbox"><div><small>القيمة الأولى</small>${A}</div><div><small>القيمة الثانية</small>${B}</div></div>`;
+      return { sec: 'كمي', topic: 'المقارنات', q, choices: CMP, a: ans, exp };
     }
 
-    // تبديل المظهر (الداكن / الفاتح)
-    function toggleTheme() {
-      if(document.body.getAttribute('data-theme') === 'dark') {
-        document.body.removeAttribute('data-theme');
-      } else {
-        document.body.setAttribute('data-theme', 'dark');
+    /* ---------- القدرات: الكمي (مولَّد) ---------- */
+    const K = 'كمي';
+    const QUANT = [
+      () => { const x = pick([10, 15, 20, 25, 30, 40, 60, 75]), y = rnd(2, 20) * 20, a = x * y / 100;
+        return numQ(K, 'النسب المئوية', `ما قيمة ${x}% من ${y}؟`, a, [a + y / 10, a * 2, y - a, a - y / 20], `${x}% من ${y} = (${x} ÷ 100) × ${y} = ${a}`); },
+      () => { const a = rnd(1, 4), b = rnd(a + 1, 7), k = rnd(3, 15), N = k * (a + b);
+        return numQ(K, 'النسبة والتناسب', `قُسِّم مبلغ ${N} ريالًا بين شخصين بنسبة ${a} : ${b}، فما نصيب الأكبر؟`, k * b, [k * a, k * b + k, k * (b - a), N - k], `مجموع الأجزاء = ${a + b}، قيمة الجزء = ${N} ÷ ${a + b} = ${k}، نصيب الأكبر = ${b} × ${k} = ${k * b} ريالًا`, x => x + ' ريال'); },
+      () => { const a = rnd(10, 30), b = a + rnd(1, 4), x = 5 * b - 4 * a;
+        return numQ(K, 'المتوسط الحسابي', `متوسط 4 أعداد يساوي ${a}، وعند إضافة عدد خامس أصبح المتوسط ${b}. ما العدد الخامس؟`, x, [b, x + 5, x - 4, a + b], `مجموع الأربعة = 4 × ${a} = ${4 * a}، مجموع الخمسة = 5 × ${b} = ${5 * b}، العدد الخامس = ${5 * b} − ${4 * a} = ${x}`); },
+      () => { const x = rnd(-6, 12) || 3, a = rnd(2, 9), b = rnd(-15, 20) || 4, c = a * x + b;
+        return numQ(K, 'الجبر', `إذا كان ${a}س ${b > 0 ? '+' : '−'} ${Math.abs(b)} = ${c} فما قيمة س؟`, x, [-x, (c + b) / a, x + 2, c - b], `ننقل الثابت: ${a}س = ${c - b}، ثم نقسم على ${a} فتكون س = ${x}`); },
+      () => { const v = pick([40, 50, 60, 80, 90, 100, 120]), t = rnd(3, 6), d = v * t;
+        return numQ(K, 'السرعة والمسافة', `تسير سيارة بسرعة ثابتة ${v} كم/ساعة، فما المسافة التي تقطعها في ${t} ساعات؟`, d, [d + v, d - v, v + t * 10, d / 2], `المسافة = السرعة × الزمن = ${v} × ${t} = ${d} كم`, x => x + ' كم'); },
+      () => { const l = rnd(6, 15), w = rnd(2, l - 1), A = l * w, P = 2 * (l + w);
+        return numQ(K, 'الهندسة', `مستطيل محيطه ${P} سم وطوله ${l} سم. ما مساحته؟`, A, [P, l * l, A + l, A - w], `العرض = (${P} ÷ 2) − ${l} = ${w} سم، المساحة = ${l} × ${w} = ${A} سم²`, x => x + ' سم²'); },
+      () => { const t = rnd(1, 3);
+        if (t === 1) { const a = rnd(3, 12), b = rnd(2, 15), c = rnd(2, 15), A = a * a, B = b * c, ans = A > B ? 0 : A < B ? 1 : 2;
+          return cmpQ('', `${a}²`, `${b} × ${c}`, ans, `${a}² = ${A}، و ${b} × ${c} = ${B}، إذن ${['القيمة الأولى أكبر', 'القيمة الثانية أكبر', 'القيمتان متساويتان'][ans]}.`); }
+        if (t === 2) { const x = pick([20, 25, 40, 50, 60, 75]), y = pick([12, 16, 24, 32, 48]);
+          return cmpQ('', `${x}% من ${y}`, `${y}% من ${x}`, 2, `كلتاهما تساوي ${x} × ${y} ÷ 100 = ${x * y / 100}، فالقيمتان متساويتان.`); }
+        const o = pick([
+          ['س عدد صحيح موجب', 'س²', 'س', 3, 'عند س = 1 تتساوى القيمتان، وعند س = 2 تكون الأولى أكبر، لذا المعطيات غير كافية.'],
+          ['س عدد حقيقي', 'س + 5', 'س + 3', 0, 'مهما كانت قيمة س فإن س + 5 أكبر من س + 3 بمقدار 2.'],
+          ['س عدد حقيقي', '2س', 'س', 3, 'عند س = 3 تكون الأولى أكبر، وعند س = −1 تكون الثانية أكبر، لذا المعطيات غير كافية.'],
+          ['س عدد أكبر من 1', '1 ÷ س', 'س', 1, 'إذا كان س > 1 فإن 1 ÷ س أقل من 1، أي أقل من س، فالثانية أكبر.'],
+          ['س عدد حقيقي', 'س²', '0', 3, 'عند س = 0 تتساويان، وعند س = 2 تكون الأولى أكبر، لذا المعطيات غير كافية.'],
+          ['س عدد سالب', 'س³', 'س²', 1, 'مكعب العدد السالب سالب، ومربعه موجب، فالثانية أكبر.']
+        ]);
+        return cmpQ(o[0], o[1], o[2], o[3], o[4]); },
+      () => { if (Math.random() < .5) { const s = rnd(1, 15), d = rnd(2, 9), t = [0, 1, 2, 3].map(i => s + i * d), n = s + 4 * d;
+          return numQ(K, 'المتتابعات', `ما الحد التالي في المتتابعة: ${t.join('، ')}، ...؟`, n, [n + d, n - 1, n + 1, t[3] + 2], `الفرق بين كل حدين ثابت ويساوي ${d}، إذن الحد التالي = ${t[3]} + ${d} = ${n}`); }
+        const s = rnd(1, 5), r = pick([2, 3]), t = [0, 1, 2, 3].map(i => s * r ** i), n = s * r ** 4;
+        return numQ(K, 'المتتابعات', `ما الحد التالي في المتتابعة: ${t.join('، ')}، ...؟`, n, [t[3] + (t[3] - t[2]), n + r, n - s, t[3] * (r + 1)], `كل حد يساوي الحد السابق × ${r}، إذن الحد التالي = ${t[3]} × ${r} = ${n}`); },
+      () => { const w = pick([4, 6, 8, 12]), d = pick([6, 9, 12, 15]), T = w * d, divs = [];
+        for (let k = 2; k <= 30; k++) if (T % k === 0 && k !== w) divs.push(k);
+        const w2 = pick(divs), a = T / w2;
+        return numQ(K, 'العمل والعمال', `يُنجز ${w} عمال عملًا في ${d} أيام. في كم يومًا يُنجز ${w2} عمال العمل نفسه بالكفاءة نفسها؟`, a, [d * w2 / w, a + 2, a - 1, d + w2 - w], `كمية العمل = ${w} × ${d} = ${T} وحدة، والمدة = ${T} ÷ ${w2} = ${a} يوم (تناسب عكسي)`, x => x + ' يوم'); },
+      () => { const [p, q, r] = pick([[3, 4, 5], [5, 12, 13], [8, 15, 17], [6, 8, 10], [9, 12, 15]]), k = rnd(1, 3), a = p * k, b = q * k, h = r * k;
+        return numQ(K, 'الهندسة', `مثلث قائم الزاوية، طولا ضلعي القائمة ${a} سم و ${b} سم. ما طول الوتر؟`, h, [a + b, h + 1, h - 2, b + 1], `حسب فيثاغورس: الوتر² = ${a}² + ${b}² = ${a * a + b * b}، إذن الوتر = ${h} سم`, x => x + ' سم'); },
+      () => { const r = rnd(2, 10);
+        return numQ(K, 'الهندسة', `دائرة نصف قطرها ${r} سم. ما مساحتها؟`, r * r, [2 * r, 4 * r * r, r, 2 * r * r], `المساحة = π × نق² = π × ${r}² = ${r * r}π سم²`, x => x + 'π سم²'); },
+      () => { const p = rnd(4, 30) * 20, d = pick([10, 20, 25, 30, 40]), cut = p * d / 100, a = p - cut;
+        return numQ(K, 'النسب المئوية', `سعر جهاز ${p} ريالًا وعليه خصم ${d}%. كم سعره بعد الخصم؟`, a, [cut, p - d, a - p / 10, a + p / 20], `قيمة الخصم = ${d}% × ${p} = ${cut}، السعر بعد الخصم = ${p} − ${cut} = ${a} ريالًا`, x => x + ' ريال'); },
+      () => { const k = pick([2, 3, 4, 5]), s = rnd(5, 14), f = k * s, S = s + f;
+        return numQ(K, 'مسائل الأعمار', `عمر أب يساوي ${k} أمثال عمر ابنه، ومجموع عمريهما ${S} سنة. كم عمر الابن؟`, s, [f, S / k, s + 3, s - 2], `نفرض عمر الابن س: س + ${k}س = ${S} ← ${k + 1}س = ${S} ← س = ${s} سنة`, x => x + ' سنة'); },
+      () => { const a = rnd(30, 80), b = rnd(30, 90), c = 180 - a - b;
+        return numQ(K, 'الهندسة', `في مثلث، قياس زاويتين ${a}° و ${b}°. ما قياس الزاوية الثالثة؟`, c, [360 - a - b, c + 10, c - 10, 90 - c], `مجموع زوايا المثلث 180°، إذن الثالثة = 180 − ${a} − ${b} = ${c}°`, x => x + '°'); },
+      () => { const a = rnd(2, 7), b = rnd(2, 7);
+        return numQ(K, 'الأسس', `إذا كان 2<sup>${a}</sup> × 2<sup>${b}</sup> = 2<sup>ن</sup> فما قيمة ن؟`, a + b, [a * b, a + b + 1, Math.abs(a - b), a + b - 1], `عند ضرب قوى لها الأساس نفسه نجمع الأسس: ن = ${a} + ${b} = ${a + b}`); },
+      () => { const N = rnd(2, 15) * 8, a = 3 * N / 8;
+        return numQ(K, 'الكسور', `ما قيمة ½ من ¾ من العدد ${N}؟`, a, [3 * N / 4, N / 2, N / 8, a + 3], `¾ × ${N} = ${3 * N / 4}، ونصفها = ${a}`); },
+      () => { const n = rnd(4, 40) * 4, X = n * 5 / 4;
+        return numQ(K, 'النسب المئوية', `عدد إذا زيد بمقدار 25% منه أصبح ${X}. ما العدد؟`, n, [X - 25, X * 3 / 4, n + 4, X - n / 2], `العدد × 1.25 = ${X} ← العدد = ${X} ÷ 1.25 = ${n}`); }
+    ];
+
+    /* ---------- القدرات: اللفظي (بنك) ---------- */
+    const AN = 'اختر الزوج الذي تماثل العلاقة فيه علاقة: ';
+    const CE = 'حدد الكلمة التي لا تتناسب مع سياق الجملة: ';
+    const OD = 'اختر الكلمة المختلفة عن البقية:';
+    const VERBAL = [
+      ['v1', 'التناظر اللفظي', AN + '<b>قلم : كتابة</b>', 'مقص : قص', ['ورق : دفتر', 'حبر : لون', 'مكتب : كرسي'], 'القلم أداة للكتابة، والمقص أداة للقص (أداة واستخدامها).'],
+      ['v2', 'التناظر اللفظي', AN + '<b>طبيب : مستشفى</b>', 'معلم : مدرسة', ['مريض : دواء', 'ممرض : طبيب', 'سيارة : طريق'], 'الطبيب يعمل في المستشفى، والمعلم يعمل في المدرسة (عامل ومكان عمله).'],
+      ['v3', 'التناظر اللفظي', AN + '<b>عطش : ماء</b>', 'جوع : طعام', ['نوم : سرير', 'برد : شتاء', 'تعب : عمل'], 'العطش يزول بالماء، والجوع يزول بالطعام.'],
+      ['v4', 'التناظر اللفظي', AN + '<b>نحلة : عسل</b>', 'بقرة : حليب', ['أسد : غابة', 'طائر : عش', 'سمكة : بحر'], 'النحلة تنتج العسل، والبقرة تنتج الحليب (كائن وما ينتجه).'],
+      ['v5', 'التناظر اللفظي', AN + '<b>كتاب : فصول</b>', 'عمارة : طوابق', ['شجرة : ظل', 'سيارة : سائق', 'باب : مفتاح'], 'الكتاب يتكوّن من فصول، والعمارة تتكوّن من طوابق (كل وأجزاؤه).'],
+      ['v6', 'التناظر اللفظي', AN + '<b>بارد : ساخن</b>', 'طويل : قصير', ['سريع : عاجل', 'جميل : حسن', 'كبير : ضخم'], 'العلاقة تضاد، والخيارات الأخرى مترادفات.'],
+      ['v7', 'التناظر اللفظي', AN + '<b>تفاح : فاكهة</b>', 'جزر : خضار', ['خبز : قمح', 'ماء : نهر', 'لحم : جزار'], 'التفاح نوع من الفاكهة، والجزر نوع من الخضار (فرد ومجموعته).'],
+      ['v8', 'التناظر اللفظي', AN + '<b>صوت : أذن</b>', 'ضوء : عين', ['طعام : مطبخ', 'ريح : شجرة', 'مطر : سحاب'], 'الأذن تستقبل الصوت، والعين تستقبل الضوء.'],
+      ['v9', 'التناظر اللفظي', AN + '<b>بذرة : شجرة</b>', 'طفل : رجل', ['ورقة : كتاب', 'ماء : كوب', 'حجر : جبل'], 'البذرة تنمو فتصبح شجرة، والطفل ينمو فيصبح رجلًا (مرحلة نمو).'],
+      ['v10', 'التناظر اللفظي', AN + '<b>نجار : خشب</b>', 'حداد : حديد', ['خباز : فرن', 'طبيب : مرض', 'كاتب : قصة'], 'النجار يشكّل الخشب، والحداد يشكّل الحديد (صانع والمادة الخام).'],
+      ['v11', 'التناظر اللفظي', AN + '<b>قدم : حذاء</b>', 'يد : قفاز', ['رأس : شعر', 'عين : دمع', 'ظهر : حقيبة'], 'الحذاء يُلبس في القدم، والقفاز يُلبس في اليد.'],
+      ['v12', 'التناظر اللفظي', AN + '<b>كريم : بخيل</b>', 'شجاع : جبان', ['ذكي : فطن', 'قوي : متين', 'صادق : أمين'], 'العلاقة تضاد في الصفات.'],
+      ['v13', 'التناظر اللفظي', AN + '<b>شمس : نهار</b>', 'قمر : ليل', ['غيم : سماء', 'بحر : موج', 'شجرة : ظل'], 'الشمس تظهر في النهار، والقمر يظهر في الليل.'],
+      ['v14', 'التناظر اللفظي', AN + '<b>مزارع : حقل</b>', 'بحّار : سفينة', ['تاجر : مال', 'جندي : سلاح', 'قاضٍ : حكم'], 'المزارع يعمل في الحقل، والبحار يعمل في السفينة (عامل ومكان عمله).'],
+      ['v15', 'التناظر اللفظي', AN + '<b>ساعة : وقت</b>', 'ميزان : وزن', ['مسطرة : دفتر', 'مصباح : كهرباء', 'هاتف : شاشة'], 'الساعة أداة لقياس الوقت، والميزان أداة لقياس الوزن.'],
+
+      ['v16', 'إكمال الجمل', 'اختر ما يناسب الفراغ: العلمُ في الصغر كالنقش على ......', 'الحجر', ['الماء', 'الرمل', 'الورق'], 'المثل يدل على ثبات ما يُتعلَّم في الصغر كثبات النقش على الحجر.'],
+      ['v17', 'إكمال الجمل', 'اختر ما يناسب الفراغ: من جدّ ......، ومن زرع حصد.', 'وجد', ['فقد', 'ندم', 'تعب'], 'المثل المعروف: من جدّ وجد، أي نال ما سعى إليه.'],
+      ['v18', 'إكمال الجمل', 'اختر ما يناسب الفراغ: كان الطالب ...... في مذاكرته، فحصل على أعلى الدرجات.', 'مجتهدًا', ['متكاسلًا', 'مترددًا', 'غائبًا'], 'الفاء تدل على النتيجة، والدرجات العالية نتيجة الاجتهاد.'],
+      ['v19', 'إكمال الجمل', 'اختر ما يناسب الفراغ: الصبر مفتاح ......', 'الفرج', ['الضيق', 'الحزن', 'الغضب'], 'المثل يدل على أن الصبر يؤدي إلى زوال الشدة.'],
+      ['v20', 'إكمال الجمل', 'اختر ما يناسب الفراغ: رغم صعوبة الطريق، ...... المتسابق السباق بنجاح.', 'أنهى', ['ترك', 'خسر', 'أهمل'], '«رغم» تدل على تضاد بين الصعوبة والنتيجة الإيجابية.'],
+      ['v21', 'إكمال الجمل', 'اختر ما يناسب الفراغ: الوقاية ...... من العلاج.', 'خير', ['أقل', 'أصعب', 'أبعد'], 'المثل: الوقاية خير من العلاج.'],
+      ['v22', 'إكمال الجمل', 'اختر ما يناسب الفراغ: يُعرف المرء بـ...... لا بمظهره.', 'أفعاله', ['ثيابه', 'ماله', 'اسمه'], '«لا بمظهره» تقتضي ما يقابل المظهر، وهو الأفعال.'],
+      ['v23', 'إكمال الجمل', 'اختر ما يناسب الفراغ: كلما ازدادت معرفة الإنسان الحقيقية ازداد ......', 'تواضعًا', ['غرورًا', 'جهلًا', 'عزلةً'], 'المعرفة الحقيقية تُشعر صاحبها باتساع ما لا يعلمه فيتواضع.'],
+      ['v24', 'إكمال الجمل', 'اختر ما يناسب الفراغ: اتفق الطرفان على ...... الخلاف بالحوار بدلًا من القطيعة.', 'حلّ', ['تأجيج', 'زيادة', 'إشعال'], 'الحوار بديل القطيعة وغايته حل الخلاف.'],
+      ['v25', 'إكمال الجمل', 'اختر ما يناسب الفراغ: إذا كان الكلام من فضة فالسكوت من ......', 'ذهب', ['حديد', 'نحاس', 'خشب'], 'المثل يفضّل السكوت في موضعه على الكلام.'],
+      ['v26', 'إكمال الجمل', 'اختر ما يناسب الفراغ: انقطع التيار الكهربائي، ...... أشعلنا الشموع.', 'لذلك', ['لكن', 'رغم ذلك', 'بينما'], 'إشعال الشموع نتيجة لانقطاع الكهرباء، فالمناسب أداة نتيجة.'],
+
+      ['v27', 'الخطأ السياقي', CE + 'يحرص المسلم على الصدق في القول لأنه يجلب الشكّ بين الناس.', 'الشك', ['يحرص', 'الصدق', 'يجلب'], 'الصدق يجلب الثقة لا الشك.'],
+      ['v28', 'الخطأ السياقي', CE + 'الرياضة المنتظمة تُضعف الجسم وتحسّن الصحة النفسية.', 'تُضعف', ['المنتظمة', 'تحسّن', 'النفسية'], 'الرياضة تقوّي الجسم، فالخطأ «تُضعف».'],
+      ['v29', 'الخطأ السياقي', CE + 'انخفضت درجة الحرارة في الشتاء فارتدى الناس الملابس الخفيفة.', 'الخفيفة', ['انخفضت', 'الشتاء', 'ارتدى'], 'البرد يقتضي الملابس الثقيلة.'],
+      ['v30', 'الخطأ السياقي', CE + 'القراءة غذاء العقل، فهي تُضيّق مدارك الإنسان وتثري معرفته.', 'تُضيّق', ['غذاء', 'تثري', 'معرفته'], 'القراءة توسّع المدارك ولا تضيّقها.'],
+      ['v31', 'الخطأ السياقي', CE + 'من أراد النجاح فعليه بالكسل والمثابرة.', 'الكسل', ['أراد', 'النجاح', 'المثابرة'], 'النجاح يحتاج الجد والمثابرة لا الكسل.'],
+      ['v32', 'الخطأ السياقي', CE + 'تتميز الصحراء بقلة الأمطار وكثرة الغطاء النباتي.', 'كثرة', ['تتميز', 'قلة', 'الأمطار'], 'قلة الأمطار تؤدي إلى قلة الغطاء النباتي.'],
+      ['v33', 'الخطأ السياقي', CE + 'أسرعت سيارة الإسعاف بنقل المصاب إلى المستشفى لإهمال حالته.', 'لإهمال', ['أسرعت', 'بنقل', 'المستشفى'], 'الغاية من الإسراع علاج المصاب وإنقاذه، لا إهماله.'],
+      ['v34', 'الخطأ السياقي', CE + 'الأمانة صفة ذميمة يحبها الناس في التاجر.', 'ذميمة', ['الأمانة', 'يحبها', 'التاجر'], 'الأمانة صفة حميدة، ولذلك يحبها الناس.'],
+      ['v35', 'الخطأ السياقي', CE + 'النخلة شجرة مثمرة تشتهر بها المملكة، ويُصنع من ثمارها الحديد.', 'الحديد', ['مثمرة', 'تشتهر', 'ثمارها'], 'ثمار النخلة (التمر) يُصنع منها الدبس والحلويات لا الحديد.'],
+      ['v36', 'الخطأ السياقي', CE + 'حافظ على نظافة الحي لأن النظافة تنشر الأمراض.', 'تنشر', ['حافظ', 'نظافة', 'الحي'], 'النظافة تمنع الأمراض ولا تنشرها.'],
+
+      ['v37', 'المفردة الشاذة', OD, 'حمامة', ['أسد', 'نمر', 'فهد'], 'أسد ونمر وفهد حيوانات مفترسة من السنوريات، والحمامة طائر.'],
+      ['v38', 'المفردة الشاذة', OD, 'مكعب', ['مثلث', 'مربع', 'دائرة'], 'المثلث والمربع والدائرة أشكال مستوية، والمكعب مجسّم.'],
+      ['v39', 'المفردة الشاذة', OD, 'القاهرة', ['الرياض', 'جدة', 'الدمام'], 'الرياض وجدة والدمام مدن سعودية، والقاهرة مدينة مصرية.'],
+      ['v40', 'المفردة الشاذة', OD, 'خشب', ['حديد', 'نحاس', 'ذهب'], 'الحديد والنحاس والذهب فلزات، والخشب ليس فلزًا.'],
+      ['v41', 'المفردة الشاذة', OD, 'سريع', ['أحمر', 'أزرق', 'أخضر'], 'أحمر وأزرق وأخضر ألوان، و«سريع» صفة للحركة.'],
+      ['v42', 'المفردة الشاذة', OD, 'ملعقة', ['قلم', 'مسطرة', 'ممحاة'], 'القلم والمسطرة والممحاة أدوات مدرسية، والملعقة أداة طعام.'],
+      ['v43', 'المفردة الشاذة', OD, 'يناير', ['الأحد', 'الخميس', 'الجمعة'], 'الأحد والخميس والجمعة أيام، ويناير شهر.'],
+      ['v44', 'المفردة الشاذة', OD, 'حزن', ['فرح', 'سرور', 'بهجة'], 'فرح وسرور وبهجة مترادفات، والحزن ضدها.'],
+
+      ['v45', 'المفردات', 'ما معنى كلمة (الوَجَل)؟', 'الخوف', ['الفرح', 'العجلة', 'الغضب'], 'الوجل هو الخوف، ومنه قوله تعالى: «وقلوبهم وجلة».'],
+      ['v46', 'المفردات', 'ما مضاد كلمة (الجليّ)؟', 'الخفيّ', ['الواضح', 'البعيد', 'الكبير'], 'الجلي هو الواضح الظاهر، وضده الخفي.'],
+      ['v47', 'المفردات', 'ما معنى كلمة (اليَمّ)؟', 'البحر', ['الجبل', 'الصحراء', 'الوادي'], 'اليم هو البحر، كما في قصة موسى عليه السلام.'],
+      ['v48', 'المفردات', 'ما مضاد كلمة (الإقدام)؟', 'الإحجام', ['الشجاعة', 'التقدّم', 'الجرأة'], 'الإقدام هو التقدم بجرأة، وضده الإحجام أي التراجع.'],
+      ['v49', 'المفردات', 'ما معنى كلمة (الغيث)؟', 'المطر', ['الريح', 'البرق', 'الضباب'], 'الغيث هو المطر النافع.'],
+
+      ['v50', 'استيعاب المقروء', '<div class="passage">تُعدّ النخلة من أهم الأشجار في شبه الجزيرة العربية، فقد اعتمد عليها الناس قديمًا في غذائهم وبناء بيوتهم وصناعة أدواتهم، ولا تزال تحظى بمكانة خاصة لقدرتها على تحمّل الحرارة وقلة المياه.</div>يُفهم من النص أن النخلة:', 'تتكيّف مع البيئة الحارة الجافة', ['تحتاج إلى كميات كبيرة من الماء', 'لم تعد لها أهمية اليوم', 'تُستخدم للغذاء فقط'], 'النص يذكر قدرتها على تحمّل الحرارة وقلة المياه.'],
+      ['v51', 'استيعاب المقروء', '<div class="passage">يرى بعض الباحثين أن النوم الكافي يساعد الدماغ على تثبيت المعلومات التي تعلّمها الإنسان خلال يومه، ولذلك يُنصح الطلاب بعدم السهر ليلة الاختبار.</div>ما الفكرة الرئيسة للنص؟', 'أهمية النوم الكافي للتعلّم', ['أضرار المذاكرة الطويلة', 'السهر وسيلة للاستعداد للاختبار', 'أسباب الأرق عند الطلاب'], 'النص كله يدور حول دور النوم في تثبيت المعلومات.'],
+      ['v52', 'استيعاب المقروء', '<div class="passage">لم يكن اختراع الطباعة مجرد تطور تقني، بل كان نقطة تحوّل في نشر المعرفة؛ إذ أصبح الكتاب في متناول عدد أكبر من الناس بعد أن كان حكرًا على قلة منهم.</div>كلمة (حكرًا) في النص تعني:', 'مقصورًا', ['متاحًا', 'رخيصًا', 'مفقودًا'], 'السياق يقابل بين «في متناول عدد أكبر» و«حكرًا على قلة»، أي مقصورًا عليهم.']
+    ];
+
+    /* ---------- التحصيلي: مولَّد ---------- */
+    const pw = (c, e) => (e === 0 ? String(c) : (c === 1 ? '' : c) + 'س' + (e > 1 ? `<sup>${e}</sup>` : ''));
+    const MATH_GEN = [
+      () => { const c = rnd(2, 9), n = rnd(2, 5);
+        return txtQ('رياضيات', 'التفاضل', `إذا كانت د(س) = ${pw(c, n)} فإن المشتقة د′(س) تساوي:`, pw(c * n, n - 1), [pw(c, n - 1), pw(c * n, n), pw(c * (n - 1), n - 1), pw(c * n + 1, n - 1)], `قاعدة القوة: نضرب في الأس ونطرح منه 1 ← ${c} × ${n} = ${c * n}، والأس ${n - 1}.`); },
+      () => { const p = rnd(1, 7); let q = rnd(1, 7); if (q === p) q = p + 1;
+        return txtQ('رياضيات', 'المعادلات التربيعية', `ما حلول المعادلة: س² − ${p + q}س + ${p * q} = 0 ؟`, `س = ${p} أو س = ${q}`, [`س = −${p} أو س = −${q}`, `س = ${p + q} أو س = ${p * q}`, `س = ${p} أو س = −${q}`], `نحلل: (س − ${p})(س − ${q}) = 0، فالحلان ${p} و ${q}.`); },
+      () => { const b = pick([2, 3, 5, 10]), k = rnd(2, 4), v = b ** k;
+        return numQ('رياضيات', 'اللوغاريتمات', `ما قيمة ${m(`log<sub>${b}</sub> ${v}`)} ؟`, k, [v / b, k + 1, b, k * b], `لأن ${b}<sup>${k}</sup> = ${v}، فإن اللوغاريتم = ${k}.`); },
+      () => { const a = rnd(2, 9);
+        return numQ('رياضيات', 'النهايات', `أوجد: نها (س² − ${a * a}) ÷ (س − ${a}) عندما س ← ${a}`, 2 * a, [a, a * a, 2 * a + 1, 0], `نحلل البسط: (س − ${a})(س + ${a})، ونختصر فتصبح س + ${a}، وبالتعويض = ${2 * a}.`); },
+      () => { const x1 = rnd(-3, 3), dx = rnd(1, 4), s = pick([-4, -3, -2, -1, 1, 2, 3, 4, 5]), y1 = rnd(-5, 5), x2 = x1 + dx, y2 = y1 + s * dx;
+        return numQ('رياضيات', 'الهندسة التحليلية', `ما ميل المستقيم المار بالنقطتين ${m(`(${x1}, ${y1})`)} و ${m(`(${x2}, ${y2})`)} ؟`, s, [-s, s + 1, dx, s * 2], `الميل = (ص₂ − ص₁) ÷ (س₂ − س₁) = ${s * dx} ÷ ${dx} = ${s}`, x => m(x)); },
+      () => { const a1 = rnd(2, 10), d = rnd(2, 7), n = rnd(10, 25), an = a1 + (n - 1) * d;
+        return numQ('رياضيات', 'المتتابعات', `متتابعة حسابية حدها الأول ${a1} وأساسها ${d}. ما قيمة الحد رقم ${n}؟`, an, [a1 + n * d, a1 + (n - 2) * d, n * d, an + 1], `ح<sub>ن</sub> = ح₁ + (ن − 1) × د = ${a1} + ${n - 1} × ${d} = ${an}`); }
+    ];
+    const PHYS_GEN = [
+      () => { const ms = rnd(2, 20), a = rnd(2, 10), F = ms * a;
+        return numQ('فيزياء', 'قوانين نيوتن', `ما القوة المحصلة اللازمة لإكساب جسم كتلته ${ms} كجم تسارعًا مقداره ${a} م/ث²؟`, F, [ms + a, F * 2, F / 2, F + 10], `ق = ك × ت = ${ms} × ${a} = ${F} نيوتن`, x => x + ' نيوتن'); },
+      () => { const I = rnd(2, 6), R = rnd(2, 12), V = I * R;
+        return numQ('فيزياء', 'الكهرباء', `مقاومة كهربائية قيمتها ${R} أوم، وفرق الجهد بين طرفيها ${V} فولت. ما شدة التيار المار فيها؟`, I, [V * R, I + 1, I * 2, R - I], `حسب قانون أوم: ت = جـ ÷ م = ${V} ÷ ${R} = ${I} أمبير`, x => x + ' أمبير'); },
+      () => { const ms = pick([2, 4, 6, 10]), v = rnd(2, 10), KE = ms * v * v / 2;
+        return numQ('فيزياء', 'الطاقة', `جسم كتلته ${ms} كجم يتحرك بسرعة ${v} م/ث. ما طاقته الحركية؟`, KE, [ms * v, ms * v * v, ms * v / 2, KE * 2], `ط ح = ½ × ك × ع² = ½ × ${ms} × ${v}² = ${KE} جول`, x => x + ' جول'); },
+      () => { const ms = rnd(5, 80), W = ms * 10;
+        return numQ('فيزياء', 'الجاذبية', `ما وزن جسم كتلته ${ms} كجم على سطح الأرض؟ (اعتبر تسارع الجاذبية = 10 م/ث²)`, W, [ms, W / 2, W + 10, ms + 10], `الوزن = ك × جـ = ${ms} × 10 = ${W} نيوتن`, x => x + ' نيوتن'); },
+      () => { const W = rnd(2, 20) * 100, t = pick([2, 4, 5, 10]), P = W / t;
+        return numQ('فيزياء', 'الشغل والقدرة', `آلة تبذل شغلًا مقداره ${W} جول خلال ${t} ثوانٍ. ما قدرتها؟`, P, [W * t, P * 2, P / 2, W - t], `القدرة = الشغل ÷ الزمن = ${W} ÷ ${t} = ${P} واط`, x => x + ' واط'); },
+      () => { const V = rnd(2, 10), rho = pick([2, 3, 5, 8, 10]), ms = rho * V;
+        return numQ('فيزياء', 'الكثافة', `جسم كتلته ${ms} جم وحجمه ${V} سم³. ما كثافته؟`, rho, [ms * V, rho + 1, V, rho * 2], `الكثافة = الكتلة ÷ الحجم = ${ms} ÷ ${V} = ${rho} جم/سم³`, x => x + ' جم/سم³'); }
+    ];
+    const CHEM_GEN = [
+      () => { const [f, M] = pick([['H<sub>2</sub>O', 18], ['CO<sub>2</sub>', 44], ['NaOH', 40], ['CH<sub>4</sub>', 16]]), n = rnd(2, 5), mass = n * M;
+        return numQ('كيمياء', 'الحسابات الكيميائية', `كم عدد مولات ${m(f)} الموجودة في ${mass} جم منه؟ (الكتلة المولية = ${M} جم/مول)`, n, [n + 1, n * 2, n - 1, mass / 10], `عدد المولات = الكتلة ÷ الكتلة المولية = ${mass} ÷ ${M} = ${n} مول`, x => x + ' مول'); },
+      () => { const [el, A, Z] = pick([['Na', 23, 11], ['Cl', 35, 17], ['Fe', 56, 26], ['Ca', 40, 20], ['Al', 27, 13], ['O', 16, 8], ['K', 39, 19], ['Mg', 24, 12]]);
+        return numQ('كيمياء', 'تركيب الذرة', `ذرة ${m(el)} عددها الذري ${Z} وعددها الكتلي ${A}. كم عدد النيوترونات فيها؟`, A - Z, [A, Z, A + Z, A - Z + 1], `عدد النيوترونات = العدد الكتلي − العدد الذري = ${A} − ${Z} = ${A - Z}`); },
+      () => { const k = rnd(1, 13);
+        return numQ('كيمياء', 'الأحماض والقواعد', `محلول تركيز أيونات الهيدروجين فيه ${m(`10<sup>−${k}</sup>`)} مول/لتر. ما قيمة ${m('pH')} له؟`, k, [14 - k, k + 1, k + 2, 14 + k], `${m('pH = −log[H⁺]')} = ${k}، والمحلول ${k < 7 ? 'حمضي' : k > 7 ? 'قاعدي' : 'متعادل'}.`); }
+    ];
+
+    /* ---------- التحصيلي: بنك ---------- */
+    const MATH_BANK = [
+      ['m1', 'المثلثات', 'ما قيمة جا 30°؟', '½', ['√3 ÷ 2', '1', '0'], 'جا 30° = ½ من القيم الخاصة.'],
+      ['m2', 'المثلثات', 'ما قيمة ظا 45°؟', '1', ['0', '½', '√3'], 'ظا 45° = جا 45° ÷ جتا 45° = 1.'],
+      ['m3', 'المثلثات', 'جا²θ + جتا²θ تساوي:', '1', ['0', '2', 'ظا θ'], 'هذه المتطابقة المثلثية الأساسية.'],
+      ['m4', 'التفاضل', 'مشتقة الدالة الثابتة د(س) = 7 هي:', '0', ['7', '1', '7س'], 'مشتقة أي ثابت تساوي صفرًا.'],
+      ['m5', 'التفاضل', 'مشتقة جا س بالنسبة إلى س هي:', 'جتا س', ['−جتا س', '−جا س', 'ظا س'], 'د/دس (جا س) = جتا س.'],
+      ['m6', 'التكامل', '∫ 2س دس يساوي:', 'س² + ث', ['2س² + ث', 'س + ث', '2 + ث'], 'نرفع الأس بواحد ونقسم عليه: 2 × س² ÷ 2 = س².'],
+      ['m7', 'الجبر', 'مفكوك (س + 1)² هو:', 'س² + 2س + 1', ['س² + 1', 'س² + س + 1', '2س + 2'], '(أ + ب)² = أ² + 2أب + ب².'],
+      ['m8', 'الهندسة', 'مجموع قياسات الزوايا الداخلية للمضلع الخماسي:', '540°', ['360°', '720°', '450°'], '(ن − 2) × 180 = 3 × 180 = 540°.'],
+      ['m9', 'الأعداد المركبة', 'قيمة ت² (حيث ت الوحدة التخيلية) تساوي:', '−1', ['1', '0', 'ت'], 'ت = √−1، إذن ت² = −1.'],
+      ['m10', 'الهندسة التحليلية', 'معادلة الدائرة التي مركزها نقطة الأصل ونصف قطرها 5:', 'س² + ص² = 25', ['س² + ص² = 5', 'س + ص = 25', 'س² − ص² = 25'], 'س² + ص² = نق²، ونق² = 25.'],
+      ['m11', 'الاحتمالات', 'عدد طرق ترتيب 4 طلاب في صف واحد:', '24', ['16', '12', '4'], 'عدد التباديل = 4! = 4 × 3 × 2 × 1 = 24.'],
+      ['m12', 'الاحتمالات', 'عند رمي حجر نرد منتظم مرة واحدة، ما احتمال ظهور عدد زوجي؟', '½', ['⅓', '⅙', '⅔'], 'الأعداد الزوجية 2، 4، 6 ← 3 من 6 = ½.']
+    ];
+    const PHYS_BANK = [
+      ['p1', 'الكميات والوحدات', 'وحدة قياس القوة في النظام الدولي:', 'نيوتن', ['جول', 'واط', 'باسكال'], 'القوة تقاس بالنيوتن.'],
+      ['p2', 'الكميات والوحدات', 'وحدة قياس الضغط في النظام الدولي:', 'باسكال', ['نيوتن', 'جول', 'هيرتز'], 'الضغط = القوة ÷ المساحة، ووحدته الباسكال.'],
+      ['p3', 'الكميات والوحدات', 'وحدة قياس التردد:', 'هيرتز', ['واط', 'أوم', 'فولت'], 'التردد = عدد الاهتزازات في الثانية، ووحدته الهيرتز.'],
+      ['p4', 'الموجات', `سرعة الضوء في الفراغ تساوي تقريبًا:`, `${m('3 × 10<sup>8</sup>')} م/ث`, [`${m('3 × 10<sup>5</sup>')} م/ث`, '340 م/ث', `${m('3 × 10<sup>6</sup>')} م/ث`], 'سرعة الضوء في الفراغ ≈ 300 ألف كم/ث = 3 × 10⁸ م/ث.'],
+      ['p5', 'الموجات', 'لا ينتقل الصوت في:', 'الفراغ', ['الماء', 'الهواء', 'الحديد'], 'الصوت موجة ميكانيكية تحتاج إلى وسط مادي.'],
+      ['p6', 'قوانين نيوتن', 'يُسمى قانون نيوتن الأول بقانون:', 'القصور الذاتي', ['الفعل ورد الفعل', 'الجذب العام', 'حفظ الطاقة'], 'الجسم يبقى على حالته ما لم تؤثر فيه قوة محصلة.'],
+      ['p7', 'البصريات', 'العدسة المحدبة تُسمى عدسة:', 'لامّة (مجمّعة)', ['مفرّقة', 'مستوية', 'عاكسة'], 'المحدبة تجمع الأشعة المتوازية في البؤرة.'],
+      ['p8', 'الكميات الفيزيائية', 'أيّ مما يلي كمية متجهة؟', 'الإزاحة', ['الكتلة', 'الزمن', 'الطاقة'], 'الإزاحة لها مقدار واتجاه، والبقية كميات قياسية.'],
+      ['p9', 'الطاقة', 'عند مضاعفة سرعة جسم إلى مثليها، فإن طاقته الحركية:', 'تتضاعف 4 مرات', ['تتضاعف مرتين', 'تبقى ثابتة', 'تقل للنصف'], 'ط ح ∝ ع²، فمضاعفة السرعة تضرب الطاقة في 4.'],
+      ['p10', 'الحركة', 'تسارع جسم يتحرك بسرعة متجهة ثابتة يساوي:', 'صفرًا', ['قيمة موجبة', 'قيمة سالبة', '9.8 م/ث²'], 'التسارع = معدل تغير السرعة، ولا تغير هنا.'],
+      ['p11', 'الكهرباء', 'شدة التيار في دائرة توالي:', 'ثابتة في جميع أجزاء الدائرة', ['تزداد بعد كل مقاومة', 'تقل بعد كل مقاومة', 'تساوي صفرًا'], 'في التوالي يوجد مسار واحد للتيار.'],
+      ['p12', 'الكهرباء الساكنة', 'الشحنات الكهربائية المتشابهة:', 'تتنافر', ['تتجاذب', 'لا تتأثر', 'تتعادل'], 'المتشابهة تتنافر والمختلفة تتجاذب.'],
+      ['p13', 'الطاقة', 'ينص قانون حفظ الطاقة على أن الطاقة:', 'لا تفنى ولا تُستحدث من العدم', ['تفنى مع الزمن', 'تزداد باستمرار', 'لا تتحول من شكل لآخر'], 'الطاقة تتحول من شكل لآخر ومجموعها ثابت في النظام المعزول.'],
+      ['p14', 'قوانين نيوتن', 'لكل فعل رد فعل مساوٍ له في المقدار و:', 'معاكس له في الاتجاه', ['في الاتجاه نفسه', 'عمودي عليه', 'أكبر منه'], 'نص قانون نيوتن الثالث.']
+    ];
+    const CHEM_BANK = [
+      ['c1', 'تركيب الذرة', 'العدد الذري للعنصر يساوي عدد:', 'البروتونات', ['النيوترونات', 'البروتونات والنيوترونات', 'المدارات'], 'العدد الذري = عدد البروتونات في النواة.'],
+      ['c2', 'الأحماض والقواعد', `قيمة ${m('pH')} للماء النقي عند 25°س:`, '7', ['0', '1', '14'], 'الماء النقي متعادل.'],
+      ['c3', 'الجدول الدوري', 'تقع الغازات النبيلة في المجموعة رقم:', '18', ['1', '2', '17'], 'الغازات النبيلة في المجموعة 18 ولها مستوى طاقة خارجي ممتلئ.'],
+      ['c4', 'الروابط الكيميائية', `نوع الرابطة في ${m('NaCl')}:`, 'أيونية', ['تساهمية', 'فلزية', 'هيدروجينية'], 'تنشأ بين فلز (Na) ولا فلز (Cl) بانتقال الإلكترونات.'],
+      ['c5', 'المول', 'عدد أفوجادرو يساوي تقريبًا:', m('6.02 × 10<sup>23</sup>'), [m('3 × 10<sup>8</sup>'), m('6.02 × 10<sup>-23</sup>'), m('1.6 × 10<sup>-19</sup>')], 'عدد الجسيمات في المول الواحد.'],
+      ['c6', 'الأكسدة والاختزال', 'الأكسدة هي عملية:', 'فقد الإلكترونات', ['اكتساب الإلكترونات', 'فقد البروتونات', 'اكتساب النيوترونات'], 'الأكسدة فقد، والاختزال اكتساب.'],
+      ['c7', 'تركيب الذرة', 'تختلف نظائر العنصر الواحد في عدد:', 'النيوترونات', ['البروتونات', 'الإلكترونات', 'المجموعة'], 'النظائر لها العدد الذري نفسه وتختلف في العدد الكتلي.'],
+      ['c8', 'الجدول الدوري', 'العنصر الأعلى كهروسالبية:', 'الفلور', ['الأكسجين', 'الكلور', 'الصوديوم'], 'الفلور أعلى العناصر كهروسالبية.'],
+      ['c9', 'الكيمياء العضوية', `ينتمي الميثان ${m('CH<sub>4</sub>')} إلى:`, 'الألكانات', ['الألكينات', 'الألكاينات', 'الكحولات'], 'الميثان هيدروكربون مشبع بروابط أحادية.'],
+      ['c10', 'الحسابات الكيميائية', `الكتلة المولية لـ ${m('NH<sub>3</sub>')} (N = 14، H = 1):`, '17 جم/مول', ['15 جم/مول', '18 جم/مول', '42 جم/مول'], '14 + 3 × 1 = 17.'],
+      ['c11', 'الحسابات الكيميائية', `الكتلة المولية لـ ${m('CaCO<sub>3</sub>')} (Ca = 40، C = 12، O = 16):`, '100 جم/مول', ['68 جم/مول', '84 جم/مول', '116 جم/مول'], '40 + 12 + 3 × 16 = 100.'],
+      ['c12', 'الحسابات الكيميائية', `الكتلة المولية لـ ${m('H<sub>2</sub>SO<sub>4</sub>')} (H = 1، S = 32، O = 16):`, '98 جم/مول', ['49 جم/مول', '96 جم/مول', '82 جم/مول'], '2 + 32 + 4 × 16 = 98.'],
+      ['c13', 'الأحماض والقواعد', 'الحمض حسب مفهوم أرهينيوس مادة تنتج في الماء أيونات:', m('H<sup>+</sup>'), [m('OH<sup>−</sup>'), m('Na<sup>+</sup>'), m('Cl<sup>−</sup>')], 'حمض أرهينيوس يزيد تركيز أيونات الهيدروجين.'],
+      ['c14', 'التوزيع الإلكتروني', 'أقصى عدد من الإلكترونات يتسع له مستوى الطاقة الثاني (ن = 2):', '8', ['2', '18', '32'], 'السعة = 2ن² = 2 × 4 = 8.'],
+      ['c15', 'الغازات', 'حجم مول واحد من أي غاز في الظروف القياسية (STP):', '22.4 لتر', ['1 لتر', '11.2 لتر', '44.8 لتر'], 'الحجم المولاري للغاز عند STP = 22.4 لتر.'],
+      ['c16', 'الكيمياء الحرارية', `في التفاعل الطارد للحرارة تكون قيمة ${m('ΔH')}:`, 'سالبة', ['موجبة', 'صفرًا', 'غير محددة'], 'النظام يفقد طاقة إلى المحيط.'],
+      ['c17', 'سرعة التفاعل', 'العامل المحفّز:', 'يزيد سرعة التفاعل دون أن يُستهلك', ['يُستهلك في التفاعل', 'يغيّر نواتج التفاعل', 'يبطئ التفاعل دائمًا'], 'المحفز يخفض طاقة التنشيط ولا يُستهلك.']
+    ];
+    const BIO_BANK = [
+      ['b1', 'الخلية', 'العضية المسؤولة عن التنفس الخلوي وإنتاج الطاقة:', 'الميتوكوندريا', ['الرايبوسوم', 'جهاز جولجي', 'الفجوة'], 'الميتوكوندريا مركز إنتاج ATP.'],
+      ['b2', 'الخلية', 'تحدث عملية البناء الضوئي في:', 'البلاستيدات الخضراء', ['الميتوكوندريا', 'النواة', 'الرايبوسومات'], 'تحتوي البلاستيدات الخضراء على الكلوروفيل.'],
+      ['b3', 'الخلية', 'العضية المسؤولة عن بناء البروتين:', 'الرايبوسومات', ['الليسوسومات', 'الميتوكوندريا', 'الغشاء البلازمي'], 'الرايبوسومات مواقع ترجمة mRNA إلى بروتين.'],
+      ['b4', 'الوراثة', 'عدد الكروموسومات في الخلية الجسمية للإنسان:', '46', ['23', '44', '48'], '23 زوجًا = 46 كروموسومًا.'],
+      ['b5', 'انقسام الخلية', 'ينتج عن الانقسام المتساوي:', 'خليتان متطابقتان', ['أربع خلايا مختلفة', 'خلية واحدة', 'خليتان بنصف عدد الكروموسومات'], 'الانقسام المتساوي للنمو والتعويض.'],
+      ['b6', 'انقسام الخلية', 'ينتج عن الانقسام المنصف:', 'أربع خلايا أحادية المجموعة الكروموسومية', ['خليتان متطابقتان', 'أربع خلايا ثنائية المجموعة', 'خلية واحدة'], 'ينتج الأمشاج بنصف عدد الكروموسومات.'],
+      ['b7', 'الدم', 'البروتين المسؤول عن نقل الأكسجين في الدم:', 'الهيموجلوبين', ['الأنسولين', 'الكيراتين', 'الفيبرين'], 'يوجد في خلايا الدم الحمراء.'],
+      ['b8', 'الغدد', 'الهرمون الذي يفرزه البنكرياس لخفض سكر الدم:', 'الأنسولين', ['الأدرينالين', 'الثيروكسين', 'الجلوكاجون'], 'الأنسولين يخفض السكر، والجلوكاجون يرفعه.'],
+      ['b9', 'البناء الضوئي', 'نواتج عملية البناء الضوئي:', 'الجلوكوز والأكسجين', ['الماء وثاني أكسيد الكربون', 'النشا والنيتروجين', 'الأكسجين والماء فقط'], 'ثاني أكسيد الكربون + ماء + ضوء ← جلوكوز + أكسجين.'],
+      ['b10', 'الوراثة', 'يُعد مؤسس علم الوراثة:', 'مندل', ['داروين', 'باستير', 'نيوتن'], 'جريجور مندل وتجاربه على نبات البازلاء.'],
+      ['b11', 'جسم الإنسان', 'أكبر عضو في جسم الإنسان من حيث المساحة:', 'الجلد', ['الكبد', 'الرئتان', 'الأمعاء'], 'الجلد يغطي الجسم كله.'],
+      ['b12', 'الجهاز التنفسي', 'يحدث تبادل الغازات في الرئتين داخل:', 'الحويصلات الهوائية', ['القصبة الهوائية', 'الحنجرة', 'الشعب الهوائية'], 'جدرانها رقيقة ومحاطة بالشعيرات الدموية.'],
+      ['b13', 'الجهاز العصبي', 'الوحدة البنائية والوظيفية للجهاز العصبي:', 'الخلية العصبية (العصبون)', ['النيفرون', 'الليفة العضلية', 'الخلية الدبقية'], 'العصبون ينقل السيالات العصبية.'],
+      ['b14', 'الوراثة', 'عند تزاوج فردين (Aa × Aa)، احتمال ظهور الطراز الجيني aa:', '25%', ['50%', '75%', '0%'], 'مربع بانيت: AA، Aa، Aa، aa ← واحد من أربعة.'],
+      ['b15', 'الوراثة', 'عند تزاوج فردين (Aa × aa)، احتمال ظهور الطراز الجيني aa:', '50%', ['25%', '75%', '100%'], 'النواتج: Aa، Aa، aa، aa ← اثنان من أربعة.'],
+      ['b16', 'الفيروسات', 'الفيروسات لا تتكاثر إلا:', 'داخل خلية حية', ['في الماء', 'في الهواء', 'بالانقسام الثنائي'], 'الفيروسات تعتمد على آليات الخلية المضيفة.'],
+      ['b17', 'الإنزيمات', 'الإنزيمات عبارة عن:', 'بروتينات تعمل كعوامل محفّزة حيوية', ['دهون مخزنة للطاقة', 'كربوهيدرات بنائية', 'أحماض نووية'], 'تسرّع التفاعلات الحيوية دون أن تُستهلك.'],
+      ['b18', 'الوراثة الجزيئية', 'الوحدة البنائية للحمض النووي DNA:', 'النيوكليوتيد', ['الحمض الأميني', 'الجلوكوز', 'الحمض الدهني'], 'النيوكليوتيد = سكر + فوسفات + قاعدة نيتروجينية.'],
+      ['b19', 'الوراثة الجزيئية', 'القاعدة النيتروجينية التي ترتبط مع الأدينين (A) في DNA:', 'الثايمين (T)', ['الجوانين (G)', 'السايتوسين (C)', 'اليوراسيل (U)'], 'A مع T، و G مع C في DNA.'],
+      ['b20', 'الجهاز الدوري', 'الصمام الواقع بين الأذين الأيسر والبطين الأيسر:', 'الصمام الثنائي (الميترالي)', ['الصمام الثلاثي', 'الصمام الأبهري', 'الصمام الرئوي'], 'الثلاثي في الجانب الأيمن، والثنائي في الأيسر.']
+    ];
+
+    const fromBank = (sec, it) => txtQ(sec, it[1], it[2], it[3], it[4], it[5]);
+    function pickBank(bank, n, key) {
+      let seen = new Set(store.get('ksai_seen_' + key, []));
+      let chosen = shuffle(bank.filter(q => !seen.has(q[0]))).slice(0, n);
+      if (chosen.length < n) {
+        const ids = new Set(chosen.map(q => q[0]));
+        chosen = chosen.concat(shuffle(bank.filter(q => !ids.has(q[0]))).slice(0, n - chosen.length));
+        seen = new Set();
       }
+      chosen.forEach(q => seen.add(q[0]));
+      store.set('ksai_seen_' + key, [...seen]);
+      return chosen;
     }
-
-    // إعدادات التاريخ
-    document.getElementById('dateText').innerText = new Date().toLocaleDateString('ar-SA', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-    // إدارة الواجبات والمهام
-    let homeworks = JSON.parse(localStorage.getItem('ksai_hw') || '[]');
-
-    function addHomework() {
-      const title = document.getElementById('hwTitle').value.trim();
-      const subject = document.getElementById('hwSubject').value;
-      const date = document.getElementById('hwDate').value;
-
-      if(!title) {
-        document.getElementById('hwFeedback').innerText = 'يرجى كتابة اسم الواجب أولاً.';
-        return;
-      }
-
-      homeworks.push({ id: Date.now(), title, subject, date, done: false });
-      localStorage.setItem('ksai_hw', JSON.stringify(homeworks));
-      document.getElementById('hwTitle').value = '';
-      document.getElementById('hwFeedback').innerText = 'تمت إضافة الواجب بنجاح!';
-      renderHW();
+    function mixSubject(sec, gens, bank, n, gCount) {
+      const g = shuffle(gens).slice(0, Math.min(gCount, gens.length)).map(f => f());
+      const b = pickBank(bank, n - g.length, sec).map(it => fromBank(sec, it));
+      return shuffle(g.concat(b));
     }
-
-    function toggleHW(id) {
-      homeworks = homeworks.map(item => item.id === id ? { ...item, done: !item.done } : item);
-      localStorage.setItem('ksai_hw', JSON.stringify(homeworks));
-      renderHW();
+    function buildQudrat() {
+      const quant = shuffle(QUANT).slice(0, 12).map(f => f());
+      const verbal = pickBank(VERBAL, 13, 'verbal').map(it => fromBank('لفظي', it));
+      return quant.concat(verbal);
     }
-
-    function deleteHW(id) {
-      homeworks = homeworks.filter(item => item.id !== id);
-      localStorage.setItem('ksai_hw', JSON.stringify(homeworks));
-      renderHW();
+    function buildTahsili() {
+      return [].concat(
+        mixSubject('رياضيات', MATH_GEN, MATH_BANK, 7, 4),
+        mixSubject('فيزياء', PHYS_GEN, PHYS_BANK, 6, 3),
+        mixSubject('كيمياء', CHEM_GEN, CHEM_BANK, 6, 2),
+        mixSubject('أحياء', [], BIO_BANK, 6, 0)
+      );
     }
+    /* ==BANK END== */
 
-    function renderHW() {
-      const filter = document.getElementById('hwFilter').value;
-      const listEl = document.getElementById('homeworkList');
-      const dashListEl = document.getElementById('dashboardHW');
+  /* ---------- exam engine ---------- */
+  const EXAM_MIN = 25;
+  const LETTERS = ['أ', 'ب', 'ج', 'د'];
+  const TYPE_NAME = { qudrat: 'اختبار القدرات العامة', tahsili: 'الاختبار التحصيلي' };
+  let EX = null, EXT = null;
+  const mmss = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+  function showExam(v) { ['setup', 'run', 'result'].forEach(x => $('#exam-' + x).hidden = x !== v); }
 
-      let filtered = homeworks;
-      if(filter === 'pending') filtered = homeworks.filter(h => !h.done);
-      if(filter === 'done') filtered = homeworks.filter(h => h.done);
+  async function startExam(type) {
+    if (EX && !EX.done && !(await ask('لديك اختبار جارٍ. هل تريد إلغاءه وبدء اختبار جديد؟', 'ابدأ من جديد', true))) { go('quizzes'); return; }
+    const qs = type === 'qudrat' ? buildQudrat() : buildTahsili();
+    EX = { type, qs, ans: Array(qs.length).fill(null), cur: 0, start: Date.now(), endAt: Date.now() + EXAM_MIN * 60000, done: false };
+    $('#exTitle').textContent = TYPE_NAME[type];
+    go('quizzes'); showExam('run'); renderQ();
+    clearInterval(EXT); tick(); EXT = setInterval(tick, 1000);
+  }
+  function tick() {
+    if (!EX || EX.done) return;
+    const left = Math.max(0, Math.round((EX.endAt - Date.now()) / 1000));
+    $('#exTime').textContent = mmss(left);
+    $('#exTimer').classList.toggle('warn', left <= 300);
+    if (left <= 0) finishExam(true);
+  }
+  function renderQ() {
+    const i = EX.cur, q = EX.qs[i], sel = EX.ans[i], n = EX.qs.length;
+    $('#exQuestion').innerHTML = `
+      <div class="qmeta"><span class="chip">${q.sec} • ${q.topic}</span><span class="num">السؤال ${i + 1} من ${n}</span></div>
+      <div class="question">${q.q}</div>
+      <div class="answers">${q.choices.map((c, j) => `<button type="button" class="answer" aria-pressed="${sel === j}" data-choice="${j}"><span class="letter">${LETTERS[j]}</span><span>${c}</span></button>`).join('')}</div>
+      <div class="row between" style="margin-top:18px">
+        <button type="button" class="btn ghost" data-q="${i - 1}" ${i === 0 ? 'disabled' : ''}>السابق</button>
+        ${i === n - 1 ? `<button type="button" class="btn" data-finish>إنهاء وتصحيح</button>` : `<button type="button" class="btn" data-q="${i + 1}">التالي</button>`}
+      </div>`;
+    $('#exNav').innerHTML = EX.qs.map((_, k) => `<button type="button" data-q="${k}" class="${EX.ans[k] !== null ? 'answered' : ''} ${k === i ? 'current' : ''}" aria-label="السؤال ${k + 1}">${k + 1}</button>`).join('');
+    $('#exAnswered').textContent = `أجبت عن ${EX.ans.filter(a => a !== null).length} من ${n}`;
+  }
+  $('#exam-run').addEventListener('click', e => {
+    if (!EX || EX.done) return;
+    const c = e.target.closest('[data-choice]'); if (c) { EX.ans[EX.cur] = +c.dataset.choice; renderQ(); return; }
+    const q = e.target.closest('[data-q]'); if (q && !q.disabled) { const k = +q.dataset.q; if (k >= 0 && k < EX.qs.length) { EX.cur = k; renderQ(); } return; }
+    if (e.target.closest('[data-finish]')) confirmFinish();
+  });
+  $('#finishBtn').onclick = () => confirmFinish();
+  $('#quitBtn').onclick = async () => {
+    if (!(await ask('سيُلغى الاختبار الحالي دون حفظ النتيجة.', 'إلغاء الاختبار', true))) return;
+    clearInterval(EXT); EX = null; showExam('setup'); renderHistory();
+  };
+  async function confirmFinish() {
+    const un = EX.ans.filter(a => a === null).length;
+    if (un && !(await ask(`لديك ${un} سؤال بدون إجابة. هل تريد إنهاء الاختبار الآن؟`, 'إنهاء وتصحيح'))) return;
+    finishExam(false);
+  }
+  function finishExam(timeout) {
+    if (!EX || EX.done) return;
+    EX.done = true; clearInterval(EXT);
+    const used = Math.min(EXAM_MIN * 60, Math.round((Date.now() - EX.start) / 1000));
+    const score = EX.qs.reduce((s, q, i) => s + (EX.ans[i] === q.a ? 1 : 0), 0);
+    const secs = {};
+    EX.qs.forEach((q, i) => { secs[q.sec] = secs[q.sec] || { c: 0, t: 0 }; secs[q.sec].t++; if (EX.ans[i] === q.a) secs[q.sec].c++; });
+    const hist = store.get('ksai_exams', []);
+    hist.unshift({ type: EX.type, score, total: EX.qs.length, used, date: Date.now(), secs });
+    store.set('ksai_exams', hist.slice(0, 30));
+    renderResult(score, used, secs, timeout);
+    showExam('result'); renderHistory(); renderDashboard();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function verdict(p) {
+    if (p >= 90) return ['ممتاز', 'أداء عالٍ، حافظ على هذا المستوى.'];
+    if (p >= 75) return ['جيد جدًا', 'مستوى قوي، راجع أخطاءك لتصل إلى الامتياز.'];
+    if (p >= 60) return ['جيد', 'أساس جيد، ركّز على الموضوعات التي أخطأت فيها.'];
+    return ['يحتاج مراجعة', 'راجع الشروحات ثم أعد المحاولة؛ الأسئلة ستكون جديدة.'];
+  }
+  function renderResult(score, used, secs, timeout) {
+    const n = EX.qs.length, p = Math.round(score / n * 100), [vt, vs] = verdict(p);
+    const wrong = EX.qs.filter((q, i) => EX.ans[i] !== null && EX.ans[i] !== q.a).length;
+    const skip = EX.ans.filter(a => a === null).length;
+    const rows = Object.entries(secs).map(([k, v]) => `<div class="secrow"><b>${k}</b><div class="progress"><span style="width:${Math.round(v.c / v.t * 100)}%"></span></div><span class="num">${v.c}/${v.t}</span></div>`).join('');
+    const canAI = !!SAMPLE;
+    const review = EX.qs.map((q, i) => {
+      const a = EX.ans[i], st = a === null ? 'skip' : a === q.a ? 'ok' : 'bad';
+      const lab = { ok: 'صحيحة', bad: 'خاطئة', skip: 'متروكة' }[st];
+      return `<div class="review" data-st="${st}">
+        <div class="qmeta"><span class="row"><span class="chip ${st}">${lab}</span><span class="num">السؤال ${i + 1}</span></span><span>${q.sec} • ${q.topic}</span></div>
+        <div class="question">${q.q}</div>
+        <div class="ans">${a === null ? '<span class="no">لم تُجب عن هذا السؤال</span>' : `إجابتك: <span class="${st === 'ok' ? 'yes' : 'no'}">${q.choices[a]}</span>`}
+        ${st !== 'ok' ? `<br>الإجابة الصحيحة: <span class="yes">${q.choices[q.a]}</span>` : ''}</div>
+        <div class="exp">${q.exp}</div>
+        ${st !== 'ok' && canAI ? `<div class="row" style="margin-top:8px"><button type="button" class="btn ghost sm" data-explain="${i}"><svg class="icon" style="width:16px;height:16px"><use href="#i-spark"/></svg>اشرح لي بالمساعد الذكي</button></div><div class="ai-exp" hidden></div>` : ''}
+      </div>`;
+    }).join('');
+    $('#exam-result').innerHTML = `
+      ${timeout ? '<div class="notice">انتهى الوقت، وصُحّح الاختبار تلقائيًا.</div>' : ''}
+      <div class="panel raised stack" style="gap:18px">
+        <div class="scorehead">
+          <div class="ring" style="--p:${p}"><div><span><b>${score}/${n}</b><small class="num">${p}%</small></span></div></div>
+          <div class="stack" style="gap:8px">
+            <span class="eyebrow">${TYPE_NAME[EX.type]}</span>
+            <h3 style="font-size:24px">${vt}</h3>
+            <p class="muted">${vs}</p>
+            <div class="row"><span class="chip ok">صحيحة ${score}</span><span class="chip bad">خاطئة ${wrong}</span><span class="chip skip">متروكة ${skip}</span><span class="chip num">الوقت ${mmss(used)}</span></div>
+          </div>
+        </div>
+        <div class="stack" style="gap:8px">${rows}</div>
+        <div class="row">
+          <button type="button" class="btn" data-start="${EX.type}">اختبار جديد بأسئلة مختلفة</button>
+          <button type="button" class="btn ghost" data-start="${EX.type === 'qudrat' ? 'tahsili' : 'qudrat'}">جرّب ${EX.type === 'qudrat' ? 'التحصيلي' : 'القدرات'}</button>
+          <button type="button" class="btn ghost" id="backSetup">العودة</button>
+        </div>
+      </div>
+      <div class="row between">
+        <h3>مراجعة الإجابات</h3>
+        <select class="field" id="reviewFilter" style="width:auto">
+          <option value="all">كل الأسئلة</option><option value="bad">الخاطئة والمتروكة</option><option value="ok">الصحيحة</option>
+        </select>
+      </div>
+      <div class="stack" id="reviewList">${review}</div>`;
+    $('#backSetup').onclick = () => showExam('setup');
+    $('#reviewFilter').onchange = e => {
+      const v = e.target.value;
+      $$('#reviewList .review').forEach(el => { const s = el.dataset.st; el.hidden = !(v === 'all' || (v === 'ok' ? s === 'ok' : s !== 'ok')); });
+    };
+  }
+  $('#exam-result').addEventListener('click', e => { const b = e.target.closest('[data-explain]'); if (b) explainQuestion(+b.dataset.explain, b); });
 
-      listEl.innerHTML = filtered.length ? '' : '<div class="empty">لا توجد واجبات مطابقة.</div>';
-      dashListEl.innerHTML = homeworks.length ? '' : '<div class="empty">لم تضف واجبات بعد.</div>';
+  function histItem(h) {
+    const p = Math.round(h.score / h.total * 100);
+    let d = ''; try { d = new Date(h.date).toLocaleDateString('ar-SA', { day: 'numeric', month: 'long' }); } catch (e) {}
+    return `<div class="hist-item"><span class="mark ${h.type === 'qudrat' ? '' : 'g'}">${h.type === 'qudrat' ? 'ق' : 'ت'}</span>
+      <span class="t"><b>${TYPE_NAME[h.type]}</b><small>${d} • ${h.score} من ${h.total} • الوقت <span class="num">${mmss(h.used)}</span></small></span>
+      <span class="score" style="color:${p >= 75 ? 'var(--ok)' : p >= 60 ? 'var(--gold)' : 'var(--bad)'}">${p}%</span></div>`;
+  }
+  function renderHistory() {
+    const h = store.get('ksai_exams', []);
+    $('#examHistory').innerHTML = h.length ? h.slice(0, 10).map(histItem).join('') : '<p class="empty">لا توجد محاولات بعد. ابدأ أول اختبار من الأعلى.</p>';
+  }
+  function renderDashboard() {
+    const h = store.get('ksai_exams', []), pct = x => Math.round(x.score / x.total * 100);
+    $('#stCount').textContent = h.length;
+    $('#stBest').textContent = h.length ? Math.max(...h.map(pct)) + '%' : '—';
+    $('#stAvg').textContent = h.length ? Math.round(h.reduce((s, x) => s + pct(x), 0) / h.length) + '%' : '—';
+    $('#stLast').textContent = h.length ? pct(h[0]) + '%' : '—';
+    $('#dashHistory').innerHTML = h.length ? h.slice(0, 3).map(histItem).join('') : '<p class="empty">لم تُجرِ أي اختبار بعد. ستظهر نتائجك هنا بعد أول محاولة.</p>';
+  }
+  $('#clearHist').onclick = async () => {
+    if (!(await ask('سيُحذف سجل نتائجك من هذا الجهاز.', 'مسح السجل', true))) return;
+    store.set('ksai_exams', []); renderHistory(); renderDashboard(); toast('تم مسح السجل');
+  };
+  window.addEventListener('beforeunload', e => { if (EX && !EX.done) { e.preventDefault(); e.returnValue = ''; } });
 
-      homeworks.slice(0, 3).forEach(h => {
-        dashListEl.innerHTML += `<div class="listitem ${h.done ? 'done' : ''}">
-          <div class="itemtext"><b>${h.title}</b><small>${h.subject} • ${h.date || 'بدون تاريخ'}</small></div>
-          <span class="pill">${h.done ? 'مكتمل' : 'معلق'}</span>
-        </div>`;
-      });
+  /* ---------- AI assistant ---------- */
+  let SAMPLE = null, aiReady = false, aiCtl = null, aiBusy = false;
+  const AI_RULES = `أنت "مساعد الكسائي"، معلم خصوصي لطلاب المرحلة الثانوية في المملكة العربية السعودية، ملمّ بمناهج وزارة التعليم وباختبارَي القدرات العامة والتحصيلي.
+القواعد:
+- أجب دائمًا بالعربية الفصحى المبسّطة، وبأسلوب ودود ومشجّع.
+- كن واضحًا ومختصرًا؛ ابدأ بالجواب ثم الشرح.
+- في المسائل: اكتب الخطوات مرقّمة، ثم الناتج النهائي بخط عريض.
+- عند الشرح: القاعدة، ثم طريقة سريعة، ثم مثال.
+- إذا طلب الطالب حل واجب فاشرح الطريقة والخطوات حتى يفهم.
+- التنسيق المسموح: **نص عريض**، وقوائم تبدأ بـ - أو بأرقام، وعناوين قصيرة تبدأ بـ #. لا تستخدم الجداول.`;
+  const AI_ERR = {
+    not_granted: 'لم يُسمح للبوابة باستخدام المساعد. يمكنك السماح من إعدادات الصفحة ثم إعادة فتحها.',
+    sampling_disabled: 'المساعد غير متاح لهذا الحساب.',
+    rate_limited: 'وصلت إلى حد الاستخدام مؤقتًا. حاول بعد قليل.',
+    session_expired: 'انتهت الجلسة. سجّل الدخول من جديد.',
+    refused: 'لم يتمكن المساعد من الإجابة عن هذا السؤال. جرّب صياغة مختلفة.',
+    prompt_too_large: 'السؤال أو المحادثة طويلة جدًا. ابدأ محادثة جديدة.',
+    empty_completion: 'لم تصل إجابة. جرّب صياغة مختلفة.'
+  };
+  const errText = e => AI_ERR[e && e.code] || 'تعذّر الاتصال بالمساعد. حاول مرة أخرى.';
 
-      filtered.forEach(h => {
-        listEl.innerHTML += `<div class="listitem ${h.done ? 'done' : ''}">
-          <input type="checkbox" ${h.done ? 'checked' : ''} onchange="toggleHW(${h.id})"/>
-          <div class="itemtext"><b>${h.title}</b><small>${h.subject} • ${h.date || 'بدون موعد'}</small></div>
-          <button class="btn danger small" onclick="deleteHW(${h.id})">حذف</button>
-        </div>`;
-      });
-
-      // تحديث الإحصائيات
-      const pending = homeworks.filter(h => !h.done).length;
-      const done = homeworks.filter(h => h.done).length;
-      const total = homeworks.length;
-      const percent = total ? Math.round((done / total) * 100) : 0;
-
-      document.getElementById('statHW').innerText = pending;
-      document.getElementById('statDone').innerText = done;
-      document.getElementById('statTasks').innerText = percent + '%';
-      
-      document.getElementById('hwTotal').innerText = total;
-      document.getElementById('hwPending').innerText = pending;
-      document.getElementById('hwProgress').style.width = percent + '%';
-      document.getElementById('hwProgressText').innerText = total ? `أنجزت ${done} من أصل ${total} واجب.` : 'ابدأ بإضافة واجباتك.';
+  function md(t) {
+    const lines = esc(t).split('\n'); let html = '', list = null;
+    const close = () => { const c = list === 'ul' ? '</ul>' : list === 'ol' ? '</ol>' : ''; list = null; return c; };
+    for (const raw of lines) {
+      const l = raw.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'); let m;
+      if ((m = l.match(/^\s*[-•*]\s+(.*)/))) { if (list !== 'ul') { html += close() + '<ul>'; list = 'ul'; } html += `<li>${m[1]}</li>`; }
+      else if ((m = l.match(/^\s*\d+[.)]\s+(.*)/))) { if (list !== 'ol') { html += close() + '<ol>'; list = 'ol'; } html += `<li>${m[1]}</li>`; }
+      else { html += close(); if (/^\s*#/.test(l)) html += `<h4>${l.replace(/^\s*#+\s*/, '')}</h4>`; else if (l.trim()) html += `<p>${l}</p>`; }
     }
+    return html + close();
+  }
 
-    // المساعد الدراسي (محاكاة محلية)
-    function studyHelp() {
-      const topic = document.getElementById('aiTopic').value.trim();
-      const mode = document.getElementById('aiMode').value;
-      const out = document.getElementById('aiOutput');
-
-      if(!topic) {
-        out.innerText = 'يرجى إدخال عنوان الدرس أو الملاحظات أولاً.';
-        return;
-      }
-
-      if(mode === 'explain') {
-        out.innerText = `💡 **خطة فهم درس (${topic}):**\n1. اقرأ عناوين الفصول الرئيسية للدرس أولاً.\n2. قسم الدرس إلى 3 أفكار رئيسية وتوسع فيها.\n3. صغ مفهوم الدرس بكلماتك الخاصة دون النظر للكتاب.`;
-      } else if(mode === 'summary') {
-        out.innerText = `📝 **قالب تلخيص درس (${topic}):**\n- **المفهوم الأساسي:** ...\n- **أهم القوانين/المصطلحات:** ...\n- **ملخص الخاتمة:** ...`;
-      } else {
-        out.innerText = `❓ **أسئلة مراجعة لدرس (${topic}):**\n1. ما المفهوم الأساسي في هذا الدرس؟\n2. كيف تطبق هذا الدرس في المسائل العملياتية؟\n3. ما الفرق بين النقاط الرئيسية في هذا الموضوع؟`;
-      }
+  let chat = store.get('ksai_chat', []);
+  function bubble(role, html, cls = '') { const d = document.createElement('div'); d.className = `msg ${role} ${cls}`; d.innerHTML = html; $('#chatLog').append(d); return d; }
+  function renderChat() {
+    $('#chatLog').innerHTML = '';
+    if (!aiReady) { bubble('bot', '<p class="thinking">جارٍ تجهيز المساعد...</p>'); return; }
+    if (!SAMPLE) {
+      bubble('bot', '<div class="ai-off"><b>المساعد الذكي غير متاح في هذه النسخة.</b><p>افتح البوابة من رابطها على Claude ليعمل المساعد. بقية أقسام البوابة تعمل بشكل طبيعي.</p></div>');
+      $('#chatInput').disabled = $('#sendBtn').disabled = $('#quickAskInput').disabled = true; return;
     }
-
-    function clearAI() {
-      document.getElementById('aiTopic').value = '';
-      document.getElementById('aiOutput').innerText = 'ستظهر هنا خطة أو قالب مراجعة بناءً على الموضوع الذي تكتبه.';
+    if (!chat.length) bubble('bot', md('أهلًا بك! أنا **مساعد الكسائي**. اسألني عن أي درس أو مسألة، أو اختر من «ابدأ بسرعة».\nمثال: اشرح لي قانون نيوتن الثاني مع مثال.'));
+    chat.forEach(t => t.role === 'user' ? bubble('user', esc(t.shown || t.content)) : bubble('bot', md(t.content)));
+    $('#chatLog').scrollTop = $('#chatLog').scrollHeight;
+  }
+  async function sendChat(text) {
+    text = text.trim(); if (!text || !SAMPLE || aiBusy) return;
+    const subj = $('#aiSubject').value;
+    const content = subj ? `[المادة: ${subj}]\n${text}` : text;
+    if (!chat.length) $('#chatLog').innerHTML = '';
+    chat.push({ role: 'user', content, shown: text });
+    bubble('user', esc(text));
+    const b = bubble('bot', '<p class="thinking">يفكر...</p>');
+    $('#chatLog').scrollTop = $('#chatLog').scrollHeight;
+    aiBusy = true; $('#sendBtn').hidden = true; $('#stopBtn').hidden = false;
+    aiCtl = new AbortController();
+    const turns = [{ role: 'user', content: AI_RULES }, ...chat.slice(-12).map(t => ({ role: t.role, content: t.content }))];
+    try {
+      const { text: ans, truncated } = await SAMPLE(turns, { cache: false, signal: aiCtl.signal, onText: ({ text }) => { b.innerHTML = md(text); $('#chatLog').scrollTop = $('#chatLog').scrollHeight; } });
+      chat.push({ role: 'assistant', content: ans + (truncated ? '\n\n(انقطعت الإجابة لطولها، اطلب التكملة.)' : '') });
+      if (truncated) b.innerHTML = md(chat[chat.length - 1].content);
+    } catch (e) {
+      if (e && e.code === 'cancelled') { if (e.text) { b.innerHTML = md(e.text); chat.push({ role: 'assistant', content: e.text }); } else { b.remove(); chat.pop(); } }
+      else { b.className = 'msg bot err'; b.textContent = errText(e); chat.pop(); }
+    } finally {
+      aiBusy = false; $('#sendBtn').hidden = false; $('#stopBtn').hidden = true;
+      store.set('ksai_chat', chat.slice(-30));
     }
+  }
+  function askAI(text) { go('ai'); if (!SAMPLE) return; sendChat(text); }
+  $('#chatForm').onsubmit = e => { e.preventDefault(); const v = $('#chatInput').value; $('#chatInput').value = ''; autoGrow(); sendChat(v); };
+  $('#chatInput').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); $('#chatForm').requestSubmit(); } });
+  function autoGrow() { const t = $('#chatInput'); t.style.height = 'auto'; t.style.height = Math.min(t.scrollHeight, 160) + 'px'; }
+  $('#chatInput').addEventListener('input', autoGrow);
+  $('#stopBtn').onclick = () => aiCtl && aiCtl.abort();
+  $('#clearChat').onclick = () => { if (aiBusy) aiCtl.abort(); chat = []; store.set('ksai_chat', []); renderChat(); };
+  $('#starters').onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.send) { sendChat(b.dataset.send); return; }
+    const t = $('#chatInput'); t.value = b.dataset.fill; t.focus(); t.setSelectionRange(t.value.length, t.value.length); autoGrow();
+  };
+  $('#quickAsk').onsubmit = e => { e.preventDefault(); const v = $('#quickAskInput').value.trim(); if (!v) return; $('#quickAskInput').value = ''; askAI(v); };
 
-    // البحث في اليوتيوب للشروحات
-    function searchLesson() {
-      const q = document.getElementById('lessonSearch').value.trim();
-      if(q) searchLessonQuery(q);
+  const plain = h => { const d = document.createElement('div'); d.innerHTML = h.replace(/<sup>(.*?)<\/sup>/g, '^$1').replace(/<sub>(.*?)<\/sub>/g, '_$1').replace(/<div class="passage">/g, '\nالنص: ').replace(/<\/div>/g, '\n'); return d.textContent.replace(/\s+\n/g, '\n').trim(); };
+  async function explainQuestion(i, btn) {
+    const q = EX.qs[i], a = EX.ans[i], box = btn.parentElement.nextElementSibling;
+    btn.disabled = true; box.hidden = false; box.innerHTML = '<p class="thinking">يفكر...</p>';
+    const prompt = `${AI_RULES}
+
+طالب حلّ سؤالًا في ${TYPE_NAME[EX.type]} (${q.sec} - ${q.topic}).
+السؤال: ${plain(q.q)}
+الخيارات: ${q.choices.map((c, j) => LETTERS[j] + ') ' + plain(c)).join(' | ')}
+إجابة الطالب: ${a === null ? 'لم يُجب' : plain(q.choices[a])}
+الإجابة الصحيحة: ${plain(q.choices[q.a])}
+
+اشرح للطالب بخطوات قصيرة لماذا الإجابة الصحيحة صحيحة${a === null ? '' : '، وأين الخطأ في إجابته'}، ثم أعطه نصيحة سريعة لأسئلة مشابهة. لا تتجاوز 130 كلمة.`;
+    try {
+      await SAMPLE(prompt, { onText: ({ text }) => { box.innerHTML = md(text); } });
+      btn.remove();
+    } catch (e) {
+      box.innerHTML = e && e.text ? md(e.text) : ''; if (!(e && e.code === 'cancelled')) box.insertAdjacentHTML('beforeend', `<p>${errText(e)}</p>`);
+      btn.disabled = false;
     }
+  }
 
-    function searchLessonQuery(q) {
-      window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`, '_blank');
-    }
+  (async function initAI() {
+    try { SAMPLE = window.claude && window.claude.use ? await window.claude.use('sample') : null; } catch (e) { SAMPLE = null; }
+    aiReady = true; renderChat();
+  })();
 
-    // حاسبة النسبة
-    function calcGrade() {
-      const got = parseFloat(document.getElementById('gradeGot').value);
-      const total = parseFloat(document.getElementById('gradeTotal').value);
-      const res = document.getElementById('gradeResult');
+  /* ---------- subjects ---------- */
+  const SUBJECTS = [['الرياضيات', 'الجبر، الدوال، التفاضل والتكامل.', 'ر'], ['الفيزياء', 'الحركة، القوى، الطاقة، الكهرباء.', 'ف'], ['الكيمياء', 'الذرة، الروابط، التفاعلات، الحسابات.', 'ك'], ['الأحياء', 'الخلية، الوراثة، أجهزة جسم الإنسان.', 'ح'], ['اللغة العربية', 'النحو، البلاغة، الأدب.', 'ع'], ['اللغة الإنجليزية', 'Grammar, vocabulary, reading.', 'E']];
+  $('#subjectsGrid').innerHTML = SUBJECTS.map(([n, d, l]) => `<article class="panel stack"><div class="row"><span class="mark">${l}</span><h3>${n}</h3></div><p class="muted">${d}</p>
+    <div class="row" style="margin-top:auto"><a class="btn ghost sm" href="${yt(n + ' ثانوي شرح')}" target="_blank" rel="noopener">فيديوهات</a><button type="button" class="btn ghost sm" data-ask-raw="أنا طالب ثانوي. ما أهم موضوعات مادة ${n} التي يجب أن أتقنها للاختبار التحصيلي والاختبارات المدرسية؟ رتّبها مع نصيحة لكل موضوع.">اسأل المساعد</button></div></article>`).join('');
 
-      if(isNaN(got) || isNaN(total) || total <= 0) {
-        res.innerText = 'يرجى إدخال أرقام صحيحة.';
-        return;
-      }
+  /* ---------- lessons search ---------- */
+  const ls = $('#lessonSearch');
+  const updLesson = () => { $('#lessonGo').href = ls.value.trim() ? yt(ls.value.trim()) : 'https://www.youtube.com/'; };
+  ls.addEventListener('input', updLesson);
+  ls.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); $('#lessonGo').click(); } });
 
-      const percent = ((got / total) * 100).toFixed(1);
-      res.innerText = `النسبة المئوية: %${percent}`;
-    }
+  /* ---------- planner ---------- */
+  let pomo, pomoLeft = 25 * 60;
+  const pomoShow = () => $('#pomoTime').textContent = mmss(pomoLeft);
+  $('#pomoStart').onclick = () => { clearInterval(pomo); pomo = setInterval(() => { if (pomoLeft <= 0) { clearInterval(pomo); toast('انتهت جلسة التركيز، خذ استراحة 5 دقائق.'); pomoLeft = 25 * 60; pomoShow(); } else { pomoLeft--; pomoShow(); } }, 1000); };
+  $('#pomoPause').onclick = () => clearInterval(pomo);
+  $('#pomoReset').onclick = () => { clearInterval(pomo); pomoLeft = 25 * 60; pomoShow(); };
+  const DEF_SCHED = [['الأحد', 'رياضيات', 'فيزياء', 'كيمياء', 'إنجليزي', 'أحياء'], ['الإثنين', 'لغة عربية', 'رياضيات', 'حاسب', 'إسلاميات', 'فيزياء'], ['الثلاثاء', 'كيمياء', 'أحياء', 'رياضيات', 'إنجليزي', 'لغة عربية'], ['الأربعاء', 'فيزياء', 'حاسب', 'إسلاميات', 'رياضيات', 'كيمياء'], ['الخميس', 'إنجليزي', 'أحياء', 'لغة عربية', 'تربية بدنية', 'نشاط']];
+  const sched = store.get('ksai_sched', DEF_SCHED);
+  $('#schedBody').innerHTML = sched.map((r, i) => `<tr><td>${esc(r[0])}</td>${r.slice(1).map((c, j) => `<td contenteditable="true" data-r="${i}" data-c="${j + 1}">${esc(c)}</td>`).join('')}</tr>`).join('');
+  $('#schedBody').addEventListener('blur', e => { const td = e.target.closest('td[data-r]'); if (!td) return; sched[td.dataset.r][td.dataset.c] = td.textContent.trim(); store.set('ksai_sched', sched); }, true);
 
-    // حساب الأيام المتبقية
-    function calcDays() {
-      const d = document.getElementById('eventDate').value;
-      const name = document.getElementById('eventName').value || 'الموعد';
-      const res = document.getElementById('daysResult');
+  /* ---------- tools ---------- */
+  $('#gradeForm').onsubmit = e => {
+    e.preventDefault();
+    const g = parseFloat($('#gradeGot').value), t = parseFloat($('#gradeTotal').value);
+    $('#gradeResult').textContent = isNaN(g) || isNaN(t) || t <= 0 ? 'أدخل درجتك والدرجة الكاملة بأرقام صحيحة.' : `النسبة المئوية: ${(g / t * 100).toFixed(1)}%`;
+  };
+  $('#daysForm').onsubmit = e => {
+    e.preventDefault();
+    const d = $('#eventDate').value, name = $('#eventName').value.trim() || 'الموعد';
+    if (!d) { $('#daysResult').textContent = 'اختر التاريخ أولًا.'; return; }
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const diff = Math.round((new Date(d + 'T00:00:00') - today) / 86400000);
+    $('#daysResult').textContent = diff < 0 ? `انتهى موعد ${name} منذ ${-diff} يوم.` : diff === 0 ? `موعد ${name} اليوم.` : `باقي على ${name}: ${diff} يوم.`;
+  };
 
-      if(!d) {
-        res.innerText = 'يرجى اختيار التاريخ.';
-        return;
-      }
+  renderHistory(); renderDashboard(); go('dashboard'); renderChat();
+</script>
 
-      const diff = Math.ceil((new Date(d) - new Date()) / (1000 * 60 * 60 * 24));
-      if(diff < 0) {
-        res.innerText = `انتهى موعد (${name}) منذ ${Math.abs(diff)} يوم.`;
-      } else if(diff === 0) {
-        res.innerText = `موعد (${name}) هو اليوم!`;
-      } else {
-        res.innerText = `متبقي على (${name}): ${diff} يوم.`;
-      }
-    }
-
-    // مؤقت التركيز
-    let timer;
-    let secondsLeft = 25 * 60;
-
-    function timerStart() {
-      clearInterval(timer);
-      timer = setInterval(() => {
-        if(secondsLeft <= 0) {
-          clearInterval(timer);
-          alert('انتهى وقت التركيز! خذ استراحة قصيرة.');
-          timerReset();
-        } else {
-          secondsLeft--;
-          updateTimerDisplay();
-        }
-      }, 1000);
-    }
-
-    function timerPause() { clearInterval(timer); }
-    function timerReset() {
-      clearInterval(timer);
-      secondsLeft = 25 * 60;
-      updateTimerDisplay();
-    }
-
-    function updateTimerDisplay() {
-      const m = Math.floor(secondsLeft / 60).toString().padStart(2, '0');
-      const s = (secondsLeft % 60).toString().padStart(2, '0');
-      document.getElementById('timerDisplay').innerText = `${m}:${s}`;
-    }
-
-    // البحث العام السريع
-    function globalSearchGo() {
-      const q = document.getElementById('globalSearch').value.trim().toLowerCase();
-      if(!q) return;
-
-      if(q.includes('واجب')) go('homework');
-      else if(q.includes('اختبار') || q.includes('امتحان')) go('quizzes');
-      else if(q.includes('مادة') || q.includes('مواد')) go('subjects');
-      else if(q.includes('شرح') || q.includes('فيديو')) go('lessons');
-      else if(q.includes('جدول')) go('timetable');
-      else if(q.includes('درجات') || q.includes('نور')) go('grades');
-      else alert('لم نجد قسماً مباشراً، اختر الأقسام من القائمة الجانبية.');
-    }
-
-    // التشغيل الأولي
-    renderHW();
-  </script>
 </body>
 </html>
